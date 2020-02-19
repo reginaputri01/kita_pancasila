@@ -9,7 +9,7 @@ import MainScreen from '../../components/layouts/MainScreen';
 
 export default class Component extends React.Component {
   onBack = () => {
-    this.props.navigation.navigate('FinishLatihan');
+    this.props.navigation.navigate('FinishLatihanSoal');
   };
 
   render() {

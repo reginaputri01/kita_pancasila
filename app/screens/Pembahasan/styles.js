@@ -65,6 +65,7 @@ const styles = StyleSheet.create({
   },
   soal: {
     marginTop: scale(5), 
+    marginBottom: scale(10), 
     fontSize: 16, 
     lineHeight: 25, 
     color: '#515151'

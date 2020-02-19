@@ -46,6 +46,7 @@ const styles = StyleSheet.create({
   },
   textSoal: {
     marginTop: scale(5),
+    marginBottom: scale(15),
     fontSize: 16,
     lineHeight: 25,
     color: '#515151'
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
     height: scale(55),
     borderWidth: 1,
     borderColor: '#A3A3A3',
-    marginTop: scale(20),
+    marginTop: scale(15),
     marginRight: scale(20),
     marginLeft: scale(20),
     borderRadius: 5,
