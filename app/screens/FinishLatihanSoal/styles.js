@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { scale } from '../../utils/scaling';
+import {FONT_TEXT_PRIMARY, FONT_BOLD_PRIMARY} from '../../styles';
 
 const styles = StyleSheet.create({
   background: {
@@ -12,9 +13,9 @@ const styles = StyleSheet.create({
     marginTop: scale(45)
   },
   text: {
+    ...FONT_BOLD_PRIMARY,
     color: '#fff',
     fontSize: 24,
-    fontWeight: 'bold'
   },
   piala: {
     width: scale(180),
@@ -23,9 +24,9 @@ const styles = StyleSheet.create({
     marginBottom: scale(20)
   },
   titleSkor: {
+    ...FONT_BOLD_PRIMARY,
     color: '#fff',
     fontSize: 22,
-    fontWeight: 'bold'
   },
   skorContainer: {
     width: scale(90),
@@ -35,10 +36,10 @@ const styles = StyleSheet.create({
     margin: scale(10)
   },
   skor: {
+    ...FONT_BOLD_PRIMARY,
     textAlign: 'center',
     marginTop: scale(5),
     fontSize: 26,
-    fontWeight: 'bold',
     color: '#165C84'
   },
   pembahasan: {
@@ -53,6 +54,7 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   textPembahasan: {
+    ...FONT_TEXT_PRIMARY,
     textAlign: 'center',
     fontSize: 15,
     color: '#fff'
