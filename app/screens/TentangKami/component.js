@@ -23,7 +23,7 @@ export default class Component extends React.Component {
                 </TouchableOpacity>
               </View>
               <View style={styles.headerTitle}>
-                <Text style={styles.titlenya}>TENTANG KAMI</Text>
+                <Text style={styles.title}>TENTANG KAMI</Text>
               </View>
             </View>
 

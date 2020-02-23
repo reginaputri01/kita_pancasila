@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-color-literals */
 import { StyleSheet } from 'react-native';
 import { scale } from '../../utils/scaling';
+import {FONT_TEXT_PRIMARY, FONT_BOLD_PRIMARY} from '../../styles';
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -23,6 +24,7 @@ const styles = StyleSheet.create({
     marginBottom: scale(30)
   },
   textEmail: {
+    ...FONT_TEXT_PRIMARY,
     width: '80%',
     height: scale(50),
     borderColor: '#CCCCCC',
@@ -33,6 +35,7 @@ const styles = StyleSheet.create({
     padding: scale(10)
   },
   textSandi: {
+    ...FONT_TEXT_PRIMARY,
     width: '80%',
     height: scale(50),
     borderColor: '#CCCCCC',
@@ -49,10 +52,11 @@ const styles = StyleSheet.create({
     marginBottom: scale(10)
   },
   noHaveAkun: {
+    ...FONT_TEXT_PRIMARY,
     marginBottom: scale(30)
   },
   daftar: {
-    fontWeight: 'bold',
+    ...FONT_BOLD_PRIMARY,
     color: '#3ABFDC'
   }
 });

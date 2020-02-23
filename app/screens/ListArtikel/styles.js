@@ -1,6 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { scale } from '../../utils/scaling';
-import { COLOR_BLACK } from '../../styles';
+import { COLOR_BLACK, FONT_HEADLINE5_PRIMARY } from '../../styles';
 import METRICS from '../../constants/metrics';
 
 const styles = StyleSheet.create({
@@ -24,20 +24,14 @@ const styles = StyleSheet.create({
   },
   title: {
     marginTop: METRICS.doubleBaseMargin,
-    marginLeft: scale(40),
-    color: '#000'
+    marginLeft: scale(50),
+    ...FONT_HEADLINE5_PRIMARY,
+    color: COLOR_BLACK
   },
   buttonBack: {
     justifyContent: 'flex-end',
     width: scale(40),
     height: scale(40)
-  },
-  title: {
-    marginTop: scale(20),
-    marginLeft: scale(40),
-    fontSize: 25,
-    fontWeight: 'bold',
-    color: COLOR_BLACK
   },
   content: {
     width: '100%',
