@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, Image, Text, TouchableOpacity, ImageBackground, ScrollView } from 'react-native';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import IMAGES from '../../configs/images';
@@ -18,6 +18,7 @@ export default class Component extends React.Component {
   render() {
     return (
       <ImageBackground source={IMAGES.background} style={styles.background}>
+        <ScrollView>
           <View style={styles.container}>
             <View style={styles.view_header}>
               <TouchableOpacity style={styles.touch} onPress={this.onBack}>
@@ -41,6 +42,7 @@ export default class Component extends React.Component {
               </TouchableOpacity>
             </View>
           </View>
+        </ScrollView>
       </ImageBackground>
     );
   }

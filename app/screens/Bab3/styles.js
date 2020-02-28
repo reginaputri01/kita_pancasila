@@ -63,7 +63,7 @@ const styles = StyleSheet.create({
     paddingLeft: METRICS.doubleBaseMargin,
     paddingRight: METRICS.doubleBaseMargin,
     paddingTop: METRICS.baseMargin,
-    marginBottom: scale(100),
+    marginBottom: scale(50),
     lineHeight: scale(28)
   },
   buttonBack: {

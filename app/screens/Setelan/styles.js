@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
   buttonLogout: {
     width: scale(400),
     height: scale(50),
-    marginTop: scale(50)
+    marginTop: scale(50),
+    marginBottom: scale(20)
   },
   titleContainer: {
     width: '70%',
