@@ -36,7 +36,7 @@ export default class Component extends React.Component {
             <Text style={styles.text_bold}>{I18n.t('bab4Content2')}</Text>
             <Text style={styles.text_content}>{I18n.t('bab4Content2_1')}</Text>
             <Text style={styles.text_bold}>{I18n.t('bab4Content3')}</Text>
-            <Text style={styles.text_content}>{I18n.t('bab4Content3_1')}</Text>
+            <Text style={styles.text_end}>{I18n.t('bab4Content3_1')}</Text>
           </View>
         </ScrollView>
       </ImageBackground>

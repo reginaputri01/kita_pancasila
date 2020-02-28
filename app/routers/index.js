@@ -26,6 +26,6 @@ export default SwitchNavigator(
     Bab6: Bab6Stack
   },
   {
-    initialRouteName: 'FinishLatihanSoal'
+    initialRouteName: 'SplashScreen'
   }
-);
+);  

@@ -51,7 +51,8 @@ const styles = StyleSheet.create({
     ...FONT_BODY1_PRIMARY,
     paddingLeft: METRICS.doubleBaseMargin,
     paddingRight: METRICS.doubleBaseMargin,
-    lineHeight: scale(28)
+    lineHeight: scale(28),
+    textAlign: "justify"
   },
   text_title: {
     ...FONT_HEADLINE6_PRIMARY,
@@ -62,8 +63,7 @@ const styles = StyleSheet.create({
     ...FONT_BODY1_PRIMARY,
     paddingLeft: METRICS.doubleBaseMargin,
     paddingRight: METRICS.doubleBaseMargin,
-    paddingTop: METRICS.baseMargin,
-    marginBottom: scale(50),
+    marginBottom: scale(100),
     lineHeight: scale(28)
   },
   buttonBack: {

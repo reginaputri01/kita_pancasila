@@ -62,8 +62,7 @@ const styles = StyleSheet.create({
     ...FONT_BODY1_PRIMARY,
     paddingLeft: METRICS.doubleBaseMargin,
     paddingRight: METRICS.doubleBaseMargin,
-    paddingTop: METRICS.baseMargin,
-    marginBottom: scale(50),
+    marginBottom: scale(100),
     lineHeight: scale(28)
   },
   buttonBack: {
