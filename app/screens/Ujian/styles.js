@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
   textSoal: {
     ...FONT_TEXT_PRIMARY,
     marginTop: scale(5),
+    marginBottom: scale(10),
     fontSize: 16,
     lineHeight: 25,
     color: '#515151'
