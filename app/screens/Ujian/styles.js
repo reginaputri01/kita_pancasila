@@ -68,10 +68,10 @@ const styles = StyleSheet.create({
     color: '#515151',
     alignItems: 'center'
   },
-  nextView: {
-    marginRight: scale(40),
-    marginTop: scale(40),
-    alignItems: 'flex-end'
+  nextPrevious: {
+    flexDirection: 'row',
+    padding: scale(50),
+    justifyContent: 'space-between'
   },
   btnNext: {
     width: scale(25),
