@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { scale } from '../../utils/scaling';
+import {FONT_TEXT_PRIMARY, FONT_BOLD_PRIMARY} from '../../styles';
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -19,10 +20,10 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   noSoal: {
+    ...FONT_BOLD_PRIMARY,
     textAlign: 'center',
     marginTop: scale(5),
     fontSize: 17,
-    fontWeight: 'bold'
   },
   exitKuis: {
     width: scale(90),
@@ -34,10 +35,10 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   textExit: {
+    ...FONT_BOLD_PRIMARY,
     textAlign: 'center',
     marginTop: scale(5),
     fontSize: 16,
-    fontWeight: 'bold',
     color: '#fff'
   },
   soalContainer: {
@@ -45,8 +46,8 @@ const styles = StyleSheet.create({
     paddingLeft: scale(25)
   },
   textSoal: {
+    ...FONT_TEXT_PRIMARY,
     marginTop: scale(5),
-    marginBottom: scale(15),
     fontSize: 16,
     lineHeight: 25,
     color: '#515151'
@@ -56,13 +57,14 @@ const styles = StyleSheet.create({
     height: scale(55),
     borderWidth: 1,
     borderColor: '#A3A3A3',
-    marginTop: scale(15),
+    marginTop: scale(20),
     marginRight: scale(20),
     marginLeft: scale(20),
     borderRadius: 5,
     justifyContent: 'center'
   },
   textJawaban: {
+    ...FONT_TEXT_PRIMARY,
     margin: scale(15),
     fontSize: 15,
     color: '#515151',

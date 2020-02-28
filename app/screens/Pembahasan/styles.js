@@ -1,5 +1,6 @@
 import { StyleSheet } from 'react-native';
 import { scale } from '../../utils/scaling';
+import {FONT_TEXT_PRIMARY, FONT_BOLD_PRIMARY} from '../../styles';
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -27,7 +28,7 @@ const styles = StyleSheet.create({
     marginLeft: scale(40)
   },
   titleHeader: {
-    fontWeight: 'bold',
+    ...FONT_BOLD_PRIMARY,
     fontSize: 23,
     color: '#000',
   },
@@ -43,10 +44,10 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   noSoal: {
+    ...FONT_BOLD_PRIMARY,
     textAlign: 'center', 
     marginTop: scale(5), 
-    fontSize: 20, 
-    fontWeight: 'bold'
+    fontSize: 20,
   },
   viewPoin: {
     width: scale(100), 
@@ -54,6 +55,7 @@ const styles = StyleSheet.create({
     marginLeft: scale(20)
   },
   poin: {
+    ...FONT_TEXT_PRIMARY,
     textAlign: 'center', 
     marginTop: scale(20), 
     fontSize: 16, 
@@ -64,8 +66,8 @@ const styles = StyleSheet.create({
     paddingLeft: scale(25)
   },
   soal: {
+    ...FONT_TEXT_PRIMARY,
     marginTop: scale(5), 
-    marginBottom: scale(10), 
     fontSize: 16, 
     lineHeight: 25, 
     color: '#515151'
@@ -82,12 +84,14 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   jawaban: {
+    ...FONT_TEXT_PRIMARY,
     margin: scale(15), 
     fontSize: 15, 
     color: '#515151', 
     alignItems: 'center'
   },
   konfirmasiJawaban: {
+    ...FONT_TEXT_PRIMARY,
     margin: scale(15), 
     fontSize: 15, 
     color: '#fff', 
@@ -113,9 +117,9 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   titlePembahasan: {
+    ...FONT_BOLD_PRIMARY,
     marginLeft: scale(30), 
-    marginTop: scale(20), 
-    fontWeight: 'bold', 
+    marginTop: scale(20),
     fontSize: 16
   },
   viewPembahasan: {
@@ -126,6 +130,7 @@ const styles = StyleSheet.create({
     margin: scale(10)
   },
   pembahasan: {
+    ...FONT_TEXT_PRIMARY,
     fontSize: 14,
     color: '#000',
     lineHeight: 18,

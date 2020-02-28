@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-color-literals */
 import { StyleSheet } from 'react-native';
 import { scale } from '../../utils/scaling';
+import {FONT_TEXT_PRIMARY, FONT_BOLD_PRIMARY} from '../../styles';
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -23,6 +24,7 @@ const styles = StyleSheet.create({
     marginBottom: scale(35)
   },
   textNamaLengkap: {
+    ...FONT_TEXT_PRIMARY,
     width: '80%',
     height: scale(50),
     borderColor: '#CCCCCC',
@@ -32,6 +34,7 @@ const styles = StyleSheet.create({
     padding: scale(10)
   },
   textEmail: {
+    ...FONT_TEXT_PRIMARY,
     width: '80%',
     height: scale(50),
     borderColor: '#CCCCCC',
@@ -42,6 +45,7 @@ const styles = StyleSheet.create({
     padding: scale(10)
   },
   textSandi: {
+    ...FONT_TEXT_PRIMARY,
     width: '80%',
     height: scale(50),
     borderColor: '#CCCCCC',
@@ -52,6 +56,7 @@ const styles = StyleSheet.create({
     padding: scale(10)
   },
   textKonfirmasiSandi: {
+    ...FONT_TEXT_PRIMARY,
     width: '80%',
     height: scale(50),
     borderColor: '#CCCCCC',
@@ -67,10 +72,11 @@ const styles = StyleSheet.create({
     marginBottom: scale(10)
   },
   punyaAkun: {
+    ...FONT_TEXT_PRIMARY,
     marginBottom: scale(30)
   },
   masuk: {
-    fontWeight: 'bold',
+    ...FONT_BOLD_PRIMARY,
     color: '#3ABFDC'
   }
 });

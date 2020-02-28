@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { COLOR_BLACK, FONT_HEADLINE5_PRIMARY } from '../../styles';
 import { scale } from '../../utils/scaling';
 
 const styles = StyleSheet.create({
@@ -25,10 +26,9 @@ const styles = StyleSheet.create({
     marginTop: scale(20),
     marginLeft: scale(85)
   },
-  titlenya: {
-    fontWeight: 'bold',
-    fontSize: 23,
-    color: '#000'
+  title: {
+    ...FONT_HEADLINE5_PRIMARY,
+    color: COLOR_BLACK
   },
   contentContainer: {
     flex: 1,

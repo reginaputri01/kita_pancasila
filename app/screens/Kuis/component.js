@@ -38,7 +38,7 @@ export default class Component extends React.Component {
             </TouchableOpacity>
           </View>
           <View style={styles.headerTitle}>
-            <Text style={styles.titlenya}>KUIS</Text>
+            <Text style={styles.title}>KUIS</Text>
           </View>
         </View>
 

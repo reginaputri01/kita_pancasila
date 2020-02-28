@@ -61,6 +61,14 @@ const FONT_SIZE_BUTTON = 14;
 const FONT_SIZE_CAPTION = 12;
 const FONT_SIZE_OVERLINE = 10;
 
+export const FONT_TEXT_PRIMARY = {
+  fontFamily: FONT_PRIMARY_REGULAR
+};
+
+export const FONT_BOLD_PRIMARY = {
+  fontFamily: FONT_PRIMARY_BOLD
+};
+
 export const FONT_HEADLINE1_PRIMARY = {
   fontFamily: FONT_PRIMARY_LIGHT,
   fontSize: FONT_SIZE_HEADLINE1
@@ -123,6 +131,11 @@ export const FONT_HEADLINE6_SECONDARY = {
 
 export const FONT_HEADLINE7_PRIMARY = {
   fontFamily: FONT_PRIMARY_BOLD,
+  fontSize: FONT_SIZE_HEADLINE7
+};
+
+export const FONT_HEADLINE7_REGULAR = {
+  fontFamily: FONT_PRIMARY_REGULAR,
   fontSize: FONT_SIZE_HEADLINE7
 };
 

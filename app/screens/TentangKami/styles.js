@@ -1,4 +1,5 @@
 import { StyleSheet } from 'react-native';
+import { COLOR_BLACK, FONT_HEADLINE5_PRIMARY, FONT_TEXT_PRIMARY, FONT_BOLD_PRIMARY, FONT_HEADLINE7_REGULAR } from '../../styles';
 import { scale } from '../../utils/scaling';
 
 const styles = StyleSheet.create({
@@ -30,10 +31,9 @@ const styles = StyleSheet.create({
     marginTop: scale(20),
     marginLeft: scale(40)
   },
-  titlenya: {
-    fontWeight: 'bold',
-    fontSize: 23,
-    color: '#000'
+  title: {
+    ...FONT_HEADLINE5_PRIMARY,
+    color: COLOR_BLACK
   },
   deskripsiContainer: {
     flexDirection: 'row',
@@ -59,6 +59,7 @@ const styles = StyleSheet.create({
     paddingRight: scale(10)
   },
   desc: {
+    ...FONT_TEXT_PRIMARY,
     fontSize: 14,
     color: '#000',
     lineHeight: 18
@@ -67,10 +68,9 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   creatorTitle: {
+    ...FONT_HEADLINE7_REGULAR,
     marginTop: scale(20),
     marginLeft: scale(20),
-    fontSize: 18,
-    fontWeight: 'bold',
     color: '#000',
     alignItems: 'flex-start'
   },
@@ -96,15 +96,17 @@ const styles = StyleSheet.create({
     marginTop: scale(15)
   },
   nama: {
-    fontWeight: 'bold',
+    ...FONT_BOLD_PRIMARY,
     fontSize: 15,
     color: '#000'
   },
   tugas: {
+    ...FONT_TEXT_PRIMARY,
     fontSize: 13,
     color: '#000'
   },
   email: {
+    ...FONT_TEXT_PRIMARY,
     fontSize: 13,
     color: '#88898C'
   },
@@ -112,6 +114,7 @@ const styles = StyleSheet.create({
     marginTop: scale(20)
   },
   textFooter: {
+    ...FONT_TEXT_PRIMARY,
     textAlign: 'center',
     color: '#88898C',
     fontSize: 12

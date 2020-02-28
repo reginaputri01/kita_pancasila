@@ -1,6 +1,7 @@
 /* eslint-disable react-native/no-color-literals */
 import { StyleSheet } from 'react-native';
 import { scale } from '../../utils/scaling';
+import {FONT_TEXT_PRIMARY, FONT_BOLD_PRIMARY} from '../../styles';
 
 const styles = StyleSheet.create({
   mainContainer: {
@@ -34,7 +35,7 @@ const styles = StyleSheet.create({
     marginLeft: scale(60)
   },
   titleHeader: {
-    fontWeight: 'bold',
+    ...FONT_BOLD_PRIMARY,
     fontSize: 23,
     color: '#000',
   },
@@ -52,12 +53,13 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   profileName: {
+    ...FONT_BOLD_PRIMARY,
     marginTop: scale(20),
-    fontWeight: 'bold',
     fontSize: 22,
     color: '#000'
   },
   profileEmail: {
+    ...FONT_TEXT_PRIMARY,
     marginTop: scale(5),
     fontSize: 15,
     color: '#88898C'
