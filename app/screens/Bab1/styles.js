@@ -37,9 +37,7 @@ const styles = StyleSheet.create({
     paddingLeft: METRICS.doubleBaseMargin,
     paddingRight: METRICS.doubleBaseMargin,
     paddingTop: METRICS.smallMargin,
-    lineHeight: scale(28),
-    marginRight: METRICS.smallMargin,
-    textAlign: "justify"
+    lineHeight: scale(28)
   },
   text_title: {
     ...FONT_HEADLINE6_PRIMARY,
