@@ -56,6 +56,16 @@ export default class Component extends React.Component {
         this.props.navigation.navigate('Home');
       })
       .catch((error) => {
+        error.code = "Gagal"
+
+        if (this.state.email.length == 0) {
+          error.message = "Form harus diisi."
+        } else if (error.message == "The email address is badly formatted.") {
+          error.message = "Email tidak valid."
+        } else {
+          error.message = "User tidak ditemukan atau kata sandi salah"
+        }
+
         Alert.alert(
           error.code,
           error.message
