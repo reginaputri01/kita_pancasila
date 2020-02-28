@@ -27,7 +27,8 @@ const styles = StyleSheet.create({
   buttonLogout: {
     width: scale(400),
     height: scale(50),
-    marginTop: scale(50)
+    marginTop: scale(50),
+    marginBottom: scale(20)
   },
   titleContainer: {
     width: '70%',
@@ -55,7 +56,7 @@ const styles = StyleSheet.create({
   profileName: {
     ...FONT_BOLD_PRIMARY,
     marginTop: scale(20),
-    fontSize: 22,
+    fontSize: 19,
     color: '#000'
   },
   profileEmail: {

@@ -72,10 +72,17 @@ export default class Component extends React.Component {
               </View>
             </TouchableOpacity>
 
-            <View>
-              <TouchableOpacity style={styles.nextView} onPress={this.pressNext}>
-                <Image source={IMAGES.next} resizeMode="contain" style={styles.btnNext} />
-              </TouchableOpacity>
+            <View style={styles.nextPrevious}>
+              <View>
+                 <TouchableOpacity onPress={this.pressPrevious}>
+                    <Image source={IMAGES.previous} resizeMode="contain" style={styles.btnNext} />
+                  </TouchableOpacity>
+              </View>
+              <View>
+                <TouchableOpacity onPress={this.pressNext}>
+                  <Image source={IMAGES.next} resizeMode="contain" style={styles.btnNext} />
+                </TouchableOpacity>
+              </View>
             </View>
           </ScrollView>
         </SafeAreaView>

@@ -32,6 +32,7 @@ export default class Component extends React.Component {
     return (
       <ImageBackground source={IMAGES.background} style={styles.background}>
         <SafeAreaView>
+        <ScrollView>
           <View style={styles.container}>
               <View style={styles.view_header}>
                 <TouchableOpacity style={styles.touch} onPress={this.onBack}>
@@ -42,8 +43,7 @@ export default class Component extends React.Component {
                 <Text style={styles.title}>ARTIKEL</Text>
               </View>
             </View>
-
-          <ScrollView>
+          
             <View style={styles.content}>
               <TouchableOpacity onPress={this.onPressBab1}>
                 <Image source={IMAGES.bab1} style={styles.btnBab} resizeMode="contain" />
@@ -62,11 +62,11 @@ export default class Component extends React.Component {
               </TouchableOpacity>
               <TouchableOpacity onPress={this.onPressBab6}>
                 <Image source={IMAGES.bab6} style={styles.btnBab} resizeMode="contain" />
-              </TouchableOpacity>
-            </View>
-          </ScrollView>
-        </SafeAreaView>
-      </ImageBackground>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+     </ImageBackground>
     );
   }
 }

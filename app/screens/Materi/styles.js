@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   },
   title: {
     marginTop: METRICS.doubleBaseMargin,
-    marginLeft: scale(40),
+    marginLeft: scale(30),
     ...FONT_HEADLINE5_PRIMARY,
     color: COLOR_BLACK
   },
