@@ -16,7 +16,7 @@ export default class Component extends React.Component {
       quiz: {},
       answer: [],
       indexAnswer: [0, 1, 2, 3],
-      indexQuestion: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+      indexQuestion: this.shuffle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
     };
   }
 
@@ -64,8 +64,6 @@ export default class Component extends React.Component {
       this.shuffle(this.state.indexAnswer);
       this.getData();
       this.getAnswer();
-      console.log(this.state.quiz);
-      console.log(this.state.answer);
     });
   };
 
@@ -76,8 +74,7 @@ export default class Component extends React.Component {
   async componentDidMount() {
     this.getData();
     this.getAnswer();
-    this.shuffle(this.state.indexQuestion);
-  }
+  };
 
   render() {
     return (
@@ -100,11 +97,11 @@ export default class Component extends React.Component {
                 {this.state.quiz.question}
               </Text>
             </View>
-
+    
             <TouchableOpacity>
               <View style={styles.jawabanContainer}>
-                <Text style={styles.textJawaban}>{this.state.answer[0]}</Text>
-              </View>
+                <Text style={styles.textJawaban}>hahha</Text>
+              </View>      
             </TouchableOpacity>
 
             <View>

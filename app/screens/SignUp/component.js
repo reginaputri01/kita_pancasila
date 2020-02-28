@@ -45,20 +45,30 @@ export default class Component extends React.Component {
             nama_lengkap: this.state.namaLengkap
           });
           Alert.alert(
-            'Success',
-            `Let's login!`
+            'Berhasil',
+            `Ayo masuk!`
           );
           this.props.navigation.navigate('SignIn');
         })
         .catch((error) => {
+          error.code = "Gagal"
+
+          if (this.state.namaLengkap.length == 0) {
+            error.message = "Form harus diisi."
+          } else if (error.message == "The email address is badly formatted.") {
+            error.message = "Email tidak valid."
+          } else if (this.state.password.length < 6) {
+            error.message = "Kata sandi harus lebih dari 6 karakter."
+          }
+
           Alert.alert(error.code, error.message, {
-            text: 'Close'
+            text: 'Tutup'
           });
         });
       } else {
         Alert.alert(
-          'Failed',
-          'Password Missmatch!'
+          'Gagal',
+          'Kata sandi tidak sesuai.'
         )
       }
     } catch(error) {
