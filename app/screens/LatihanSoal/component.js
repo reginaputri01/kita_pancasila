@@ -2,7 +2,7 @@
 /* eslint-disable import/first */
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { View, Image, Text, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import { View, Image, Text, TouchableOpacity, ScrollView, SafeAreaView, AsyncStorage } from 'react-native';
 import PropTypes from 'prop-types';
 import firebase from 'firebase';
 import styles from './styles';
@@ -67,9 +67,69 @@ export default class Component extends React.Component {
     });
   };
 
+  pressPrevious = () => {
+    this.setState({index: this.state.index-1}, () => {
+      this.shuffle(this.state.indexAnswer);
+      this.getData();
+      this.getAnswer();
+    });
+  };
+
   pressExit = () => {
     this.props.navigation.navigate('Kuis');
   };
+
+  navigate() {
+    const index = this.state.index + 1
+    if (index == 1) {
+      return (
+        <View>
+          <TouchableOpacity onPress={this.pressNext}>
+            <Image source={IMAGES.next} resizeMode="contain" style={styles.btnNext} />
+          </TouchableOpacity>
+        </View>
+      )
+    } else if (index < 10) {
+      return (
+        <View>
+          <TouchableOpacity onPress={this.pressPrevious}>
+            <Image source={IMAGES.previous} resizeMode="contain" style={styles.btnNext} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.pressNext}>
+            <Image source={IMAGES.next} resizeMode="contain" style={styles.btnNext} />
+          </TouchableOpacity>
+        </View>
+      )
+    } else if (index == 10) {
+      return (
+        <View>
+          <TouchableOpacity onPress={this.pressPrevious}>
+            <Image source={IMAGES.previous} resizeMode="contain" style={styles.btnNext} />
+          </TouchableOpacity>
+        </View>
+      )
+    }
+  }
+
+  async checkAnswer(answer) {
+    if (answer == this.state.quiz.correct) {
+      await AsyncStorage.setItem('points', AsyncStorage.getItem('points'+1));
+    }
+  }
+
+  answer() {
+    return this.state.answer.map((data) => {
+      return (
+        <View>
+          <TouchableOpacity onPress={this.checkAnswer(data)}>
+            <View style={styles.jawabanContainer}>
+              <Text style={styles.textJawaban}>{data}</Text>
+            </View>      
+          </TouchableOpacity>
+        </View>
+      )
+    });
+  }
 
   async componentDidMount() {
     this.getData();
@@ -97,25 +157,13 @@ export default class Component extends React.Component {
                 {this.state.quiz.question}
               </Text>
             </View>
-    
-            <TouchableOpacity>
-              <View style={styles.jawabanContainer}>
-                <Text style={styles.textJawaban}>hahha</Text>
-              </View>      
-            </TouchableOpacity>
+
+            {this.answer()}
 
             <View style={styles.nextPrevious}>
-              <View>
-                 <TouchableOpacity onPress={this.pressPrevious}>
-                    <Image source={IMAGES.previous} resizeMode="contain" style={styles.btnNext} />
-                  </TouchableOpacity>
-              </View>
-              <View>
-                <TouchableOpacity onPress={this.pressNext}>
-                  <Image source={IMAGES.next} resizeMode="contain" style={styles.btnNext} />
-                </TouchableOpacity>
-              </View>
+              {this.navigate()}
             </View>
+
           </ScrollView>
         </SafeAreaView>
       </View>
