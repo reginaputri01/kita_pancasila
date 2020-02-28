@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   headerTitle: {
     width: '100%',
     marginTop: scale(20),
-    marginLeft: scale(40)
+    marginLeft: scale(25)
   },
   title: {
     ...FONT_HEADLINE5_PRIMARY,

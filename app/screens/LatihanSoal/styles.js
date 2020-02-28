@@ -20,10 +20,10 @@ const styles = StyleSheet.create({
     borderRadius: 5
   },
   noSoal: {
+    ...FONT_BOLD_PRIMARY,
     textAlign: 'center',
     marginTop: scale(5),
-    fontSize: 17,
-    fontWeight: 'bold'
+    fontSize: 17
   },
   exitKuis: {
     width: scale(90),
@@ -48,6 +48,7 @@ const styles = StyleSheet.create({
   textSoal: {
     ...FONT_TEXT_PRIMARY,
     marginTop: scale(5),
+    marginBottom: scale(10),
     fontSize: 16,
     lineHeight: 25,
     color: '#515151'
@@ -70,10 +71,10 @@ const styles = StyleSheet.create({
     color: '#515151',
     alignItems: 'center'
   },
-  nextView: {
-    marginRight: scale(40),
-    marginTop: scale(40),
-    alignItems: 'flex-end'
+  nextPrevious: {
+    flexDirection: 'row',
+    padding: scale(50),
+    justifyContent: 'space-between'
   },
   btnNext: {
     width: scale(25),

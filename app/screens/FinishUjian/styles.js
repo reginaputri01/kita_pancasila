@@ -45,7 +45,8 @@ const styles = StyleSheet.create({
   btnTutupKuis: {
     width: scale(280),
     height: scale(50),
-    marginTop: scale(40)
+    marginTop: scale(40),
+    marginBottom: scale(20)
   }
 });
 

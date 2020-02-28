@@ -2,7 +2,7 @@
 /* eslint-disable import/first */
 /* eslint-disable react/sort-comp */
 import React from 'react';
-import { View, Image, Text, TouchableOpacity, ImageBackground } from 'react-native';
+import { View, Image, Text, TouchableOpacity, ImageBackground, ScrollView } from 'react-native';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import IMAGES from '../../configs/images';
@@ -31,41 +31,43 @@ export default class Component extends React.Component {
   render() {
     return (
       <ImageBackground source={IMAGES.background} style={styles.mainContainer}>
-        <View style={styles.headerContainer}>
-          <View style={styles.backContainer}>
-            <TouchableOpacity onPress={this.onBack}>
-              <Image source={IMAGES.buttonBack} resizeMode="contain" style={styles.buttonBack} />
-            </TouchableOpacity>
+        <ScrollView>
+          <View style={styles.headerContainer}>
+            <View style={styles.backContainer}>
+              <TouchableOpacity onPress={this.onBack}>
+                <Image source={IMAGES.buttonBack} resizeMode="contain" style={styles.buttonBack} />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.headerTitle}>
+              <Text style={styles.title}>KUIS</Text>
+            </View>
           </View>
-          <View style={styles.headerTitle}>
-            <Text style={styles.title}>KUIS</Text>
-          </View>
-        </View>
 
-        <View style={styles.contentContainer}>
-          <View style={styles.kuisContainer}>
-            <TouchableOpacity
-              onPress={this.onLatSoal}
-            >
-              <Image
-                source={IMAGES.buttonLatSoal}
-                style={styles.kuis}
-                resizeMode="contain"
-              />
-            </TouchableOpacity>
+          <View style={styles.contentContainer}>
+            <View style={styles.kuisContainer}>
+              <TouchableOpacity
+                onPress={this.onLatSoal}
+              >
+                <Image
+                  source={IMAGES.buttonLatSoal}
+                  style={styles.kuis}
+                  resizeMode="contain"
+                />
+              </TouchableOpacity>
+            </View>
+            <View style={styles.kuisContainer}>
+              <TouchableOpacity
+                onPress={this.onUjian}
+              >
+                <Image
+                  source={IMAGES.buttonUjian}
+                  style={styles.kuis}
+                  resizeMode="contain"
+                />
+              </TouchableOpacity>
+            </View>
           </View>
-          <View style={styles.kuisContainer}>
-            <TouchableOpacity
-              onPress={this.onUjian}
-            >
-              <Image
-                source={IMAGES.buttonUjian}
-                style={styles.kuis}
-                resizeMode="contain"
-              />
-            </TouchableOpacity>
-          </View>
-        </View>
+        </ScrollView>
       </ImageBackground>
     );
   }

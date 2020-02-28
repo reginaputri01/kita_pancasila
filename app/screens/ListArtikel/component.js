@@ -62,11 +62,11 @@ export default class Component extends React.Component {
               </TouchableOpacity>
               <TouchableOpacity onPress={this.onPressBab6}>
                 <Image source={IMAGES.bab6} style={styles.btnBab} resizeMode="contain" />
-              </TouchableOpacity>
-            </View>
-          </ScrollView>
-        </SafeAreaView>
-      </ImageBackground>
+            </TouchableOpacity>
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+     </ImageBackground>
     );
   }
 }
