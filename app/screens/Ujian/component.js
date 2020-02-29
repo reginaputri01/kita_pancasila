@@ -49,7 +49,7 @@ export default class Component extends React.Component {
             </View>
 
             <TouchableOpacity>
-              <View style={styles.jawabanContainer}>
+              <View style={styles.jawabanContainerHover}>
                 <Text style={styles.textJawaban}>Lambang , dasar</Text>
               </View>
             </TouchableOpacity>

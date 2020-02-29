@@ -64,6 +64,16 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     justifyContent: 'center'
   },
+  jawabanContainerHover: {
+    width: scale(320),
+    height: scale(55),
+    backgroundColor: '#00BFFF',
+    marginTop: scale(20),
+    marginRight: scale(20),
+    marginLeft: scale(20),
+    borderRadius: 5,
+    justifyContent: 'center'
+  },
   textJawaban: {
     ...FONT_TEXT_PRIMARY,
     margin: scale(15),

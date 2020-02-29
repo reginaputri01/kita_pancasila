@@ -73,11 +73,28 @@ const styles = StyleSheet.create({
   },
   nextPrevious: {
     flexDirection: 'row',
-    padding: scale(50),
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    marginTop: scale(20)
   },
   btnNext: {
     width: scale(25),
+    height: scale(50),
+    marginLeft: scale(40)
+  },
+  btnPrevious: {
+    width: scale(25),
+    height: scale(50),
+    marginLeft: scale(40),
+    marginRight: '50%'
+  },
+  btnPrevious2: {
+    width: scale(25),
+    height: scale(50),
+    marginLeft: scale(40),
+    marginRight: scale(30)
+  },
+  btnSelesai: {
+    width: scale(140),
     height: scale(50)
   }
 });

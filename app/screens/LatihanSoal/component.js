@@ -79,6 +79,10 @@ export default class Component extends React.Component {
     this.props.navigation.navigate('Kuis');
   };
 
+  pressFinish = () => {
+    this.props.navigation.navigate('FinishLatihanSoal');
+  };
+
   navigate() {
     const index = this.state.index + 1
     if (index == 1) {
@@ -91,21 +95,32 @@ export default class Component extends React.Component {
       )
     } else if (index < 10) {
       return (
-        <View>
-          <TouchableOpacity onPress={this.pressPrevious}>
-            <Image source={IMAGES.previous} resizeMode="contain" style={styles.btnNext} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={this.pressNext}>
-            <Image source={IMAGES.next} resizeMode="contain" style={styles.btnNext} />
-          </TouchableOpacity>
+        <View style={styles.nextPrevious}>
+          <View>
+              <TouchableOpacity onPress={this.pressPrevious}>
+                <Image source={IMAGES.previous} resizeMode="contain" style={styles.btnPrevious} />
+              </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity onPress={this.pressNext}>
+              <Image source={IMAGES.next} resizeMode="contain" style={styles.btnNext} />
+            </TouchableOpacity>
+          </View>
         </View>
       )
     } else if (index == 10) {
       return (
-        <View>
-          <TouchableOpacity onPress={this.pressPrevious}>
-            <Image source={IMAGES.previous} resizeMode="contain" style={styles.btnNext} />
-          </TouchableOpacity>
+        <View style={styles.nextPrevious}>
+          <View>
+              <TouchableOpacity onPress={this.pressPrevious}>
+                <Image source={IMAGES.previous} resizeMode="contain" style={styles.btnPrevious2} />
+              </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity onPress={this.pressFinish}>
+              <Image source={IMAGES.buttonSelesai} resizeMode="contain" style={styles.btnSelesai} />
+            </TouchableOpacity>
+          </View>
         </View>
       )
     }
