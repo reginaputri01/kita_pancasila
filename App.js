@@ -4,6 +4,8 @@ import Router from './app/routers';
 import store from './app/store/configureStore';
 import firebase from 'firebase';
 
+console.disableYellowBox = true;
+
 export default class App extends Component {
   componentDidMount() {
     if (!firebase.apps.length) {

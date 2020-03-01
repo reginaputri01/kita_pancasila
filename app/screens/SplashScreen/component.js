@@ -10,7 +10,7 @@ export default class Component extends React.Component {
     const data = await this.performTimeConsumingTask();
 
     if (data !== null) {
-      this.props.navigation.navigate('SignUp');
+      this.props.navigation.navigate('SignIn');
     }
   }
 
