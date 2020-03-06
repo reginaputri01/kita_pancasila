@@ -8,6 +8,8 @@ import firebase from 'firebase';
 import styles from './styles';
 import IMAGES from '../../configs/images';
 
+const a = [];
+
 export default class Component extends React.Component {
   constructor(props) {
     super(props);
@@ -16,7 +18,11 @@ export default class Component extends React.Component {
       quiz: {},
       answer: [],
       indexAnswer: [0, 1, 2, 3],
-      indexQuestion: this.shuffle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9])
+      indexQuestion: this.shuffle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]),
+      isPressed: false,
+      answerSaved: '',
+      answers: a,
+      points: 0,
     };
   }
 
@@ -60,10 +66,11 @@ export default class Component extends React.Component {
   }
   
   pressNext = () => {
-    this.setState({index: this.state.index+1}, () => {
+    this.setState({index: this.state.index+1}, async () => {
       this.shuffle(this.state.indexAnswer);
       this.getData();
       this.getAnswer();
+      console.log(this.state.answers);
     });
   };
 
@@ -127,18 +134,42 @@ export default class Component extends React.Component {
   }
 
   async checkAnswer(answer) {
-    if (answer == this.state.quiz.correct) {
-      await AsyncStorage.setItem('points', AsyncStorage.getItem('points'+1));
-    }
+    this.setState({isPressed: true}, () => {
+      this.setState({answerSaved: answer}, () => {
+        a.push(this.state.answerSaved);
+      })
+    });
   }
 
   answer() {
     return this.state.answer.map((data) => {
       return (
         <View>
-          <TouchableOpacity onPress={this.checkAnswer(data)}>
-            <View style={styles.jawabanContainer}>
-              <Text style={styles.textJawaban}>{data}</Text>
+          <TouchableOpacity 
+            onPress={() => this.checkAnswer(data)}
+            disabled={
+              data != this.state.answerSaved || data == this.state.answers[this.state.index]
+                ? false
+                : this.state.isPressed
+            }
+            
+          >
+            <View 
+              style={
+                data == this.state.answerSaved || data == this.state.answers[this.state.index]
+                  ? styles.viewJawabanBener
+                  : styles.jawabanContainer
+              }
+            >
+              <Text 
+                style={
+                  data == this.state.answerSaved || data == this.state.answers[this.state.index]
+                  ? styles.textJawabanPressed
+                  : styles.textJawaban
+                }
+              >
+                  {data}
+              </Text>
             </View>      
           </TouchableOpacity>
         </View>
