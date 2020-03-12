@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     color: '#fff', 
     alignItems: 'center'
   },
-  viewJawabanBener: {
+  jawabanPressedContainer: {
     width: scale(320),
     height: scale(55),
     borderWidth: 1,
