@@ -46,7 +46,7 @@ export default class Component extends React.Component {
         },
         {
           text: 'OK',
-          onPress: () => this.props.navigation.navigate('Ujian')
+          onPress: () => this.props.navigation.navigate('Loading2')
         }
       ]
     )

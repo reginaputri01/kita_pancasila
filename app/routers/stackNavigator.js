@@ -21,6 +21,7 @@ import Bab4 from '../screens/Bab4';
 import Bab5 from '../screens/Bab5';
 import Bab6 from '../screens/Bab6';
 import Loading from '../screens/Loading';
+import Loading2 from '../screens/Loading2';
 
 export const SplashScreenStack = StackNavigator(
   {
@@ -377,6 +378,22 @@ export const LoadingStack = StackNavigator(
   {
     Loading: {
       screen: Loading,
+      navigationOptions: {
+        tabBarVisible: false
+      }
+    }
+  },
+  {
+    headerMode: 'none',
+    navigationOptions: {
+      tabBarVisible: false
+    }
+  }
+);
+export const Loading2Stack = StackNavigator(
+  {
+    Loading2: {
+      screen: Loading2,
       navigationOptions: {
         tabBarVisible: false
       }
