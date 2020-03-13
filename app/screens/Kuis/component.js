@@ -23,14 +23,14 @@ export default class Component extends React.Component {
   onLatSoal = () => {
     Alert.alert(
       'Ayo Mulai!',
-      'Latihan soal, 10 soal.',
+      'Latihan soal (10 soal, disertai pembahasan)',
       [
         {
           text: 'Kembali'
         },
         {
           text: 'OK',
-          onPress: () => this.props.navigation.navigate('LatihanSoal')
+          onPress: () => this.props.navigation.navigate('Loading')
         }
       ]
     )
@@ -39,7 +39,7 @@ export default class Component extends React.Component {
   onUjian = () => {
     Alert.alert(
       'Ayo Mulai!',
-      'Ujian, 10 soal, disertai pembahasan.',
+      'Ujian (15 soal, tanpa pembahasan)',
       [
         {
           text: 'Kembali'

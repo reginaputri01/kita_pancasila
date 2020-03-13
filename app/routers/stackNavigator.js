@@ -20,6 +20,7 @@ import Bab3 from '../screens/Bab3';
 import Bab4 from '../screens/Bab4';
 import Bab5 from '../screens/Bab5';
 import Bab6 from '../screens/Bab6';
+import Loading from '../screens/Loading';
 
 export const SplashScreenStack = StackNavigator(
   {
@@ -360,6 +361,22 @@ export const Bab6Stack = StackNavigator(
   {
     Bab6: {
       screen: Bab6,
+      navigationOptions: {
+        tabBarVisible: false
+      }
+    }
+  },
+  {
+    headerMode: 'none',
+    navigationOptions: {
+      tabBarVisible: false
+    }
+  }
+);
+export const LoadingStack = StackNavigator(
+  {
+    Loading: {
+      screen: Loading,
       navigationOptions: {
         tabBarVisible: false
       }
