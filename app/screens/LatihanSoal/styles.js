@@ -71,6 +71,25 @@ const styles = StyleSheet.create({
     color: '#515151',
     alignItems: 'center'
   },
+  textJawabanPressed: {
+    ...FONT_TEXT_PRIMARY,
+    margin: scale(15), 
+    fontSize: 15, 
+    color: '#fff', 
+    alignItems: 'center'
+  },
+  jawabanPressedContainer: {
+    width: scale(320),
+    height: scale(55),
+    borderWidth: 1,
+    borderColor: '#00BFFF',
+    backgroundColor: '#00BFFF',
+    marginTop: scale(20),
+    marginRight: scale(20),
+    marginLeft: scale(20),
+    borderRadius: 5,
+    justifyContent: 'center'
+  },
   nextPrevious: {
     flexDirection: 'row',
     justifyContent: 'space-between',

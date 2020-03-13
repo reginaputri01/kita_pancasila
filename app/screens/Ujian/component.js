@@ -2,28 +2,231 @@
 /* eslint-disable import/first */
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { View, Image, Text, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import {
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+  ScrollView,
+  SafeAreaView,
+  AsyncStorage,
+  Alert,
+} from 'react-native';
 import PropTypes from 'prop-types';
+import firebase from 'firebase';
 import styles from './styles';
 import IMAGES from '../../configs/images';
+
+const a = [];
 
 export default class Component extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      index: null,
+      index: 0,
+      question: '',
+      answers: [],
+      indexAnswer: this.shuffle([0, 1, 2, 3]),
+      indexUjian: this.shuffle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]),
+      answerSaved: a,
+      onIndexAnswer: '',
+      correct: [],
+      points: 0,
+      isPressed: false,
     };
   }
-  
+
+  shuffle(array) {
+    var currentIndex = array.length,
+      temporaryValue,
+      randomIndex;
+
+    while (0 !== currentIndex) {
+      randomIndex = Math.floor(Math.random() * currentIndex);
+      currentIndex -= 1;
+
+      temporaryValue = array[currentIndex];
+      array[currentIndex] = array[randomIndex];
+      array[randomIndex] = temporaryValue;
+    }
+
+    return array;
+  }
+
+  getData = () => {
+    firebase
+      .database()
+      .ref(
+        `ujian_items/ujian${this.state.indexUjian[this.state.index]}/question`,
+      )
+      .on('value', snap => this.setState({question: snap.val()}));
+
+    const array = this.state.answers.splice();
+
+    for (
+      let indexAns = 0;
+      indexAns < this.state.indexAnswer.length;
+      indexAns++
+    ) {
+      firebase
+        .database()
+        .ref(
+          `ujian_items/ujian${
+            this.state.indexUjian[this.state.index]
+          }/answers/answer${
+            this.state.indexAnswer[this.state.indexAnswer[indexAns]]
+          }/text`,
+        )
+        .on('value', snap => array.push(snap.val()));
+    }
+
+    this.setState({answers: array});
+
+    const correct = this.state.correct.splice();
+
+    for (let indexes = 0; indexes < this.state.indexUjian.length; indexes++) {
+      firebase
+        .database()
+        .ref(`ujian_items/ujian${this.state.indexUjian[indexes]}/correct`)
+        .on('value', snap => (correct[indexes] = snap.val()));
+    }
+
+    this.setState({correct: correct});
+  };
+
+  checkAnswer = () => {
+    let dapet = 0;
+
+    for (
+      let checkIndex = 0;
+      checkIndex < this.state.indexUjian.length;
+      checkIndex++
+    ) {
+      this.state.correct[checkIndex] == this.state.answerSaved[checkIndex]
+        ? dapet++
+        : false;
+    }
+
+    this.setState({points: dapet});
+  };
+
   pressNext = () => {
-    let indexes = 0;
-    this.setState({index: indexes+1});
-    console.log(this.state.index);
+    this.setState({index: this.state.index + 1}, () => {
+      this.getData();
+      this.setState({onIndexAnswer: a[this.state.index]});
+    });
+  };
+
+  pressPrevious = () => {
+    this.setState({index: this.state.index - 1}, () => {
+      this.getData();
+      this.setState({onIndexAnswer: a[this.state.index]});
+    });
   };
 
   pressExit = () => {
-    this.props.navigation.navigate('Kuis');
+    Alert.alert(
+      'Peringatan',
+      'Hasil ujian anda tidak akan disimpan, tetap ingin keluar?',
+      [
+        {
+          text: 'Kembali',
+        },
+        {
+          text: 'Keluar',
+          onPress: () => this.props.navigation.navigate('Kuis'),
+        },
+      ],
+    );
   };
+
+  pressFinish = async () => {
+    this.checkAnswer();
+
+    const username = await AsyncStorage.getItem('username');
+
+    firebase
+      .database()
+      .ref()
+      .child(`users/${username}`)
+      .set({
+        points: this.state.points,
+      });
+
+    this.props.navigation.navigate('FinishUjian');
+  };
+
+  navigate() {
+    const index = this.state.index + 1;
+    if (index == 1) {
+      return (
+        <View>
+          <TouchableOpacity onPress={this.pressNext}>
+            <Image
+              source={IMAGES.next}
+              resizeMode="contain"
+              style={styles.btnNext}
+            />
+          </TouchableOpacity>
+        </View>
+      );
+    } else if (index < this.state.indexUjian.length) {
+      return (
+        <View style={styles.nextPrevious}>
+          <View>
+            <TouchableOpacity onPress={this.pressPrevious}>
+              <Image
+                source={IMAGES.previous}
+                resizeMode="contain"
+                style={styles.btnPrevious}
+              />
+            </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity onPress={this.pressNext}>
+              <Image
+                source={IMAGES.next}
+                resizeMode="contain"
+                style={styles.btnNext}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+      );
+    } else if (index == this.state.indexUjian.length) {
+      return (
+        <View style={styles.nextPrevious}>
+          <View>
+            <TouchableOpacity onPress={this.pressPrevious}>
+              <Image
+                source={IMAGES.previous}
+                resizeMode="contain"
+                style={styles.btnPrevious2}
+              />
+            </TouchableOpacity>
+          </View>
+          <View>
+            <TouchableOpacity onPress={this.pressFinish}>
+              <Image
+                source={IMAGES.buttonSelesai}
+                resizeMode="contain"
+                style={styles.btnSelesai}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+      );
+    }
+  }
+
+  answerPressed = data => {
+    a[this.state.index] = data;
+    this.setState({onIndexAnswer: a[this.state.index]});
+  };
+
+  componentDidMount() {
+    this.getData();
+  }
 
   render() {
     return (
@@ -32,7 +235,9 @@ export default class Component extends React.Component {
           <ScrollView>
             <View style={styles.headerContainer}>
               <View style={styles.viewNoSoal}>
-                <Text style={styles.noSoal}>1/10</Text>
+                <Text style={styles.noSoal}>
+                  {this.state.index + 1}/{this.state.indexUjian.length}
+                </Text>
               </View>
               <View style={styles.exitKuis}>
                 <TouchableOpacity onPress={this.pressExit}>
@@ -42,48 +247,32 @@ export default class Component extends React.Component {
             </View>
 
             <View style={styles.soalContainer}>
-              <Text style={styles.textSoal}>
-                Kata “Pancasila” berasal dari bahasa Sansekerta, yaitu kata “Panca” yang artinya … , dan “Sila”
-                yang artinya ...
-              </Text>
+              <Text style={styles.textSoal}>{this.state.question}</Text>
             </View>
 
-            <TouchableOpacity>
-              <View style={styles.jawabanContainerHover}>
-                <Text style={styles.textJawaban}>Lambang , dasar</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity>
-              <View style={styles.jawabanContainer}>
-                <Text style={styles.textJawaban}>Lambang , dasar</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity>
-              <View style={styles.jawabanContainer}>
-                <Text style={styles.textJawaban}>Lambang , dasar</Text>
-              </View>
-            </TouchableOpacity>
-
-            <TouchableOpacity>
-              <View style={styles.jawabanContainer}>
-                <Text style={styles.textJawaban}>Lambang , dasar</Text>
-              </View>
-            </TouchableOpacity>
-
-            <View style={styles.nextPrevious}>
+            {this.state.answers.map(data => (
               <View>
-                 <TouchableOpacity onPress={this.pressPrevious}>
-                    <Image source={IMAGES.previous} resizeMode="contain" style={styles.btnNext} />
-                  </TouchableOpacity>
-              </View>
-              <View>
-                <TouchableOpacity onPress={this.pressNext}>
-                  <Image source={IMAGES.next} resizeMode="contain" style={styles.btnNext} />
+                <TouchableOpacity onPress={() => this.answerPressed(data)}>
+                  <View
+                    style={
+                      this.state.onIndexAnswer != data
+                        ? styles.jawabanContainer
+                        : styles.jawabanPressedContainer
+                    }>
+                    <Text
+                      style={
+                        this.state.onIndexAnswer != data
+                          ? styles.textJawaban
+                          : styles.textJawabanPressed
+                      }>
+                      {data}
+                    </Text>
+                  </View>
                 </TouchableOpacity>
               </View>
-            </View>
+            ))}
+
+            <View style={styles.nextPrevious}>{this.navigate()}</View>
           </ScrollView>
         </SafeAreaView>
       </View>
@@ -92,5 +281,5 @@ export default class Component extends React.Component {
 }
 
 Component.propTypes = {
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
 };

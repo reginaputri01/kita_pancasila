@@ -2,7 +2,7 @@
 /* eslint-disable import/first */
 /* eslint-disable react/sort-comp */
 import React from 'react';
-import { View, Image, Text, TouchableOpacity, ImageBackground, ScrollView } from 'react-native';
+import { View, Image, Text, TouchableOpacity, ImageBackground, ScrollView, Alert } from 'react-native';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import IMAGES from '../../configs/images';
@@ -21,11 +21,35 @@ export default class Component extends React.Component {
   };
 
   onLatSoal = () => {
-    this.props.navigation.navigate('LatihanSoal');
+    Alert.alert(
+      'Ayo Mulai!',
+      'Latihan soal, 10 soal.',
+      [
+        {
+          text: 'Kembali'
+        },
+        {
+          text: 'OK',
+          onPress: () => this.props.navigation.navigate('LatihanSoal')
+        }
+      ]
+    )
   };
 
   onUjian = () => {
-    this.props.navigation.navigate('Ujian');
+    Alert.alert(
+      'Ayo Mulai!',
+      'Ujian, 10 soal, disertai pembahasan.',
+      [
+        {
+          text: 'Kembali'
+        },
+        {
+          text: 'OK',
+          onPress: () => this.props.navigation.navigate('Ujian')
+        }
+      ]
+    )
   };
 
   render() {

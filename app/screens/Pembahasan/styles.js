@@ -97,6 +97,13 @@ const styles = StyleSheet.create({
     color: '#fff', 
     alignItems: 'center'
   },
+  textJawaban: {
+    ...FONT_TEXT_PRIMARY,
+    margin: scale(15),
+    fontSize: 15,
+    color: '#515151',
+    alignItems: 'center'
+  },
   viewJawabanBener: {
     width: scale(320),
     height: scale(55),
@@ -128,6 +135,38 @@ const styles = StyleSheet.create({
     alignSelf: 'center', 
     borderRadius: 5, 
     margin: scale(10)
+  },
+  btnNext: {
+    width: scale(25),
+    height: scale(50),
+    marginLeft: scale(40)
+  },
+  btnPrevious: {
+    width: scale(25),
+    height: scale(50),
+    marginLeft: scale(40),
+    marginRight: '50%'
+  },
+  jawabanContainer: {
+    width: scale(320),
+    height: scale(55),
+    borderWidth: 1,
+    borderColor: '#A3A3A3',
+    marginTop: scale(20),
+    marginRight: scale(20),
+    marginLeft: scale(20),
+    borderRadius: 5,
+    justifyContent: 'center'
+  },
+  btnPrevious2: {
+    width: scale(25),
+    height: scale(50),
+    marginLeft: scale(40),
+    marginRight: scale(30)
+  },
+  btnSelesai: {
+    width: scale(140),
+    height: scale(50)
   },
   pembahasan: {
     ...FONT_TEXT_PRIMARY,

@@ -23,7 +23,7 @@ const styles = StyleSheet.create({
     ...FONT_BOLD_PRIMARY,
     textAlign: 'center',
     marginTop: scale(5),
-    fontSize: 17,
+    fontSize: 17
   },
   exitKuis: {
     width: scale(90),
@@ -64,16 +64,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     justifyContent: 'center'
   },
-  jawabanContainerHover: {
-    width: scale(320),
-    height: scale(55),
-    backgroundColor: '#00BFFF',
-    marginTop: scale(20),
-    marginRight: scale(20),
-    marginLeft: scale(20),
-    borderRadius: 5,
-    justifyContent: 'center'
-  },
   textJawaban: {
     ...FONT_TEXT_PRIMARY,
     margin: scale(15),
@@ -81,13 +71,49 @@ const styles = StyleSheet.create({
     color: '#515151',
     alignItems: 'center'
   },
+  textJawabanPressed: {
+    ...FONT_TEXT_PRIMARY,
+    margin: scale(15), 
+    fontSize: 15, 
+    color: '#fff', 
+    alignItems: 'center'
+  },
+  jawabanPressedContainer: {
+    width: scale(320),
+    height: scale(55),
+    borderWidth: 1,
+    borderColor: '#00BFFF',
+    backgroundColor: '#00BFFF',
+    marginTop: scale(20),
+    marginRight: scale(20),
+    marginLeft: scale(20),
+    borderRadius: 5,
+    justifyContent: 'center'
+  },
   nextPrevious: {
     flexDirection: 'row',
-    padding: scale(50),
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
+    marginTop: scale(20)
   },
   btnNext: {
     width: scale(25),
+    height: scale(50),
+    marginLeft: scale(40)
+  },
+  btnPrevious: {
+    width: scale(25),
+    height: scale(50),
+    marginLeft: scale(40),
+    marginRight: '50%'
+  },
+  btnPrevious2: {
+    width: scale(25),
+    height: scale(50),
+    marginLeft: scale(40),
+    marginRight: scale(30)
+  },
+  btnSelesai: {
+    width: scale(140),
     height: scale(50)
   }
 });
