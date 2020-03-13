@@ -2,19 +2,49 @@
 /* eslint-disable import/first */
 /* eslint-disable no-unused-vars */
 import React from 'react';
-import { View, Image, Text, TouchableOpacity, ImageBackground, SafeAreaView, ScrollView } from 'react-native';
+import {
+  View,
+  Image,
+  Text,
+  TouchableOpacity,
+  ImageBackground,
+  SafeAreaView,
+  ScrollView,
+  AsyncStorage,
+} from 'react-native';
+import firebase from 'firebase';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import IMAGES from '../../configs/images';
 
 export default class Component extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      points: 0,
+    };
+  }
+
   pressTutup = () => {
     this.props.navigation.navigate('Kuis');
   };
 
-  pressPembahasan = () => {
-    this.props.navigation.navigate('Pembahasan');
+  getPoints = async () => {
+    const username = await AsyncStorage.getItem('username');
+
+    firebase
+      .database()
+      .ref(`users/${username}/points`)
+      .on('value', snap => this.setState({points: snap.val()}));
   };
+
+  componentDidMount() {
+    this.getPoints();
+  };
+
+  pressPembahasan() {
+    this.props.navigation.navigate('Pembahasan');
+  }
 
   render() {
     return (
@@ -22,7 +52,7 @@ export default class Component extends React.Component {
         <SafeAreaView>
           <ScrollView>
             <View style={styles.mainContainer}>
-              <Text style={styles.text}>SELAMAT KUIS SELESAI !</Text>
+              <Text style={styles.text}>LATIHAN SOAL SELESAI !</Text>
               <Image
                 source={IMAGES.piala}
                 resizeMode="contain"
@@ -31,10 +61,10 @@ export default class Component extends React.Component {
               <Text style={styles.titleSkor}>Skor :</Text>
 
               <View style={styles.skorContainer}>
-                <Text style={styles.skor}>15/15</Text>
+                <Text style={styles.skor}>{this.state.points * 10}/100</Text>
               </View>
 
-              <TouchableOpacity onPress={this.pressPembahasan}>
+              <TouchableOpacity onPress={() => this.pressPembahasan()}>
                 <View style={styles.pembahasan}>
                   <Text style={styles.textPembahasan}>
                     Lihat Pembahasan
@@ -43,7 +73,11 @@ export default class Component extends React.Component {
               </TouchableOpacity>
 
               <TouchableOpacity onPress={this.pressTutup}>
-                <Image source={IMAGES.buttonTutup} style={styles.btnTutupKuis} resizeMode="contain" />
+                <Image
+                  source={IMAGES.buttonTutup}
+                  style={styles.btnTutupKuis}
+                  resizeMode="contain"
+                />
               </TouchableOpacity>
             </View>
           </ScrollView>
@@ -54,5 +88,5 @@ export default class Component extends React.Component {
 }
 
 Component.propTypes = {
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
 };

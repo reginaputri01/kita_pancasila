@@ -10,6 +10,7 @@ import {
   ScrollView,
   SafeAreaView,
   AsyncStorage,
+  Alert,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import firebase from 'firebase';
@@ -26,8 +27,11 @@ export default class Component extends React.Component {
       question: '',
       answers: [],
       indexAnswer: this.shuffle([0, 1, 2, 3]),
-      indexUjian: this.shuffle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]),
+      indexLatihan: this.shuffle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]),
       answerSaved: a,
+      onIndexAnswer: '',
+      correct: [],
+      points: 0
     };
   }
 
@@ -48,16 +52,16 @@ export default class Component extends React.Component {
     return array;
   }
 
-  getQuestion = () => {
+  getData = () => {
     firebase
       .database()
       .ref(
-        `ujian_items/ujian${this.state.indexUjian[this.state.index]}/question`,
+        `latihan_soal_items/latihan_soal${
+          this.state.indexLatihan[this.state.index]
+        }/question`,
       )
       .on('value', snap => this.setState({question: snap.val()}));
-  };
 
-  getAnswers = () => {
     const array = this.state.answers.splice();
 
     for (
@@ -68,8 +72,8 @@ export default class Component extends React.Component {
       firebase
         .database()
         .ref(
-          `ujian_items/ujian${
-            this.state.indexUjian[this.state.index]
+          `latihan_soal_items/latihan_soal${
+            this.state.indexLatihan[this.state.index]
           }/answers/answer${
             this.state.indexAnswer[this.state.indexAnswer[indexAns]]
           }/text`,
@@ -78,19 +82,81 @@ export default class Component extends React.Component {
     }
 
     this.setState({answers: array});
+
+    const correct = this.state.correct.splice();
+
+    for (let indexes = 0; indexes < this.state.indexLatihan.length; indexes++) {
+      firebase
+        .database()
+        .ref(
+          `latihan_soal_items/latihan_soal${this.state.indexLatihan[indexes]}/correct`,
+        )
+        .on('value', snap => (correct[indexes] = snap.val()));
+    }
+
+    this.setState({correct: correct});
+  };
+
+  checkAnswer = () => {
+    let dapet = 0;
+
+    for (
+      let checkIndex = 0;
+      checkIndex < this.state.indexLatihan.length;
+      checkIndex++
+    ) {
+      this.state.correct[checkIndex] == this.state.answerSaved[checkIndex]
+        ? dapet++
+        : false;
+    }
+
+    this.setState({points: dapet});
   };
 
   pressNext = () => {
-    console.log(a);
+    this.setState({index: this.state.index + 1}, () => {
+      this.getData();
+      this.setState({onIndexAnswer: a[this.state.index]});
+    });
   };
 
-  pressPrevious = () => {};
+  pressPrevious = () => {
+    this.setState({index: this.state.index - 1}, () => {
+      this.getData();
+      this.setState({onIndexAnswer: a[this.state.index]});
+    });
+  };
 
   pressExit = () => {
-    this.props.navigation.navigate('Kuis');
+    Alert.alert(
+      'Peringatan',
+      'Hasil latihan soal anda tidak akan disimpan, tetap ingin keluar?',
+      [
+        {
+          text: 'Kembali',
+        },
+        {
+          text: 'Keluar',
+          onPress: () => this.props.navigation.navigate('Kuis'),
+        },
+      ],
+    );
   };
 
-  pressFinish = () => {
+  pressFinish = async () => {
+    this.checkAnswer();
+
+    const username = await AsyncStorage.getItem('username');
+
+    firebase
+      .database()
+      .ref()
+      .child(`users/${username}`)
+      .set({
+        points: this.state.points,
+        answers: this.state.answerSaved
+      });
+
     this.props.navigation.navigate('FinishLatihanSoal');
   };
 
@@ -108,7 +174,7 @@ export default class Component extends React.Component {
           </TouchableOpacity>
         </View>
       );
-    } else if (index < this.state.indexUjian.length) {
+    } else if (index < this.state.indexLatihan.length) {
       return (
         <View style={styles.nextPrevious}>
           <View>
@@ -131,7 +197,7 @@ export default class Component extends React.Component {
           </View>
         </View>
       );
-    } else if (index == this.state.indexUjian.length) {
+    } else if (index == this.state.indexLatihan.length) {
       return (
         <View style={styles.nextPrevious}>
           <View>
@@ -157,9 +223,13 @@ export default class Component extends React.Component {
     }
   }
 
+  answerPressed = data => {
+    a[this.state.index] = data;
+    this.setState({onIndexAnswer: a[this.state.index]});
+  };
+
   componentDidMount() {
-    this.getQuestion();
-    this.getAnswers();
+    this.getData();
   }
 
   render() {
@@ -170,7 +240,7 @@ export default class Component extends React.Component {
             <View style={styles.headerContainer}>
               <View style={styles.viewNoSoal}>
                 <Text style={styles.noSoal}>
-                  {this.state.index + 1}/{this.state.indexUjian.length}
+                  {this.state.index + 1}/{this.state.indexLatihan.length}
                 </Text>
               </View>
               <View style={styles.exitKuis}>
@@ -184,33 +254,27 @@ export default class Component extends React.Component {
               <Text style={styles.textSoal}>{this.state.question}</Text>
             </View>
 
-            {
-              this.state.answers.map(data => (
-                <View>
-                  <TouchableOpacity
-                    onPress={
-                      () => a.push(data)
-                    }
-                  >
-                    <View
+            {this.state.answers.map(data => (
+              <View>
+                <TouchableOpacity onPress={() => this.answerPressed(data)}>
+                  <View
+                    style={
+                      this.state.onIndexAnswer != data
+                        ? styles.jawabanContainer
+                        : styles.jawabanPressedContainer
+                    }>
+                    <Text
                       style={
-                        this.state.answerSaved[this.state.index] != data
-                          ? styles.jawabanContainer
-                          : styles.jawabanPressedContainer
+                        this.state.onIndexAnswer != data
+                          ? styles.textJawaban
+                          : styles.textJawabanPressed
                       }>
-                      <Text
-                        style={
-                          this.state.answerSaved[this.state.index] != data
-                            ? styles.textJawaban
-                            : styles.textJawabanPressed
-                        }>
-                        {data}
-                      </Text>
-                    </View>
-                  </TouchableOpacity>
-                </View>
-              ))
-            }
+                      {data}
+                    </Text>
+                  </View>
+                </TouchableOpacity>
+              </View>
+            ))}
 
             <View style={styles.nextPrevious}>{this.navigate()}</View>
           </ScrollView>
