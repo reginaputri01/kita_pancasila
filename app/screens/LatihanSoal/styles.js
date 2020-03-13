@@ -100,6 +100,11 @@ const styles = StyleSheet.create({
     height: scale(50),
     marginLeft: scale(40)
   },
+  btnNext2: {
+    width: scale(25),
+    height: scale(50),
+    marginLeft: '86%'
+  },
   btnPrevious: {
     width: scale(25),
     height: scale(50),

@@ -7,8 +7,6 @@ import IMAGES from '../../configs/images';
 import { PacmanIndicator } from 'react-native-indicators';
 
 export default class Component extends React.Component {
-  state = { animating: true }
-
   async componentDidMount() {
     const data = await this.closeActivityIndicator();
 
@@ -21,15 +19,14 @@ export default class Component extends React.Component {
     new Promise(resolve =>
       setTimeout(() => {
         resolve('result');
-      }, 2000)
+      }, 4000)
     );
 
   render() {
-    const animating = this.state.animating
     return (
         <View style={styles.mainContainer}>
           <View>
-            <PacmanIndicator color='#000' animating = {animating}/>
+            <PacmanIndicator color='#000'/>
           </View>
           <View style={styles.text}>
           <Text>sabar yaa, soal dan jawabannya lagi diproses:)</Text>

@@ -10,7 +10,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   text: {
-    marginTop: 35,
+    marginTop: 32,
     alignItems: 'center',
 
   }
