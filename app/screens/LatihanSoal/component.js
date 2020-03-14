@@ -18,6 +18,7 @@ import styles from './styles';
 import IMAGES from '../../configs/images';
 
 const a = [];
+const b = [];
 
 export default class Component extends React.Component {
   constructor(props) {
@@ -31,7 +32,8 @@ export default class Component extends React.Component {
       answerSaved: a,
       onIndexAnswer: '',
       correct: [],
-      points: 0
+      points: 0,
+      urutanQuizSaved: b
     };
   }
 
@@ -137,7 +139,7 @@ export default class Component extends React.Component {
         },
         {
           text: 'Keluar',
-          onPress: () => this.props.navigation.navigate('Kuis'),
+          onPress: () => this.props.navigation.navigate('Kuis')
         },
       ],
     );
@@ -154,7 +156,8 @@ export default class Component extends React.Component {
       .child(`users/${username}`)
       .set({
         points: this.state.points,
-        answers: this.state.answerSaved
+        answers: this.state.answerSaved,
+        urutan: this.state.urutanQuizSaved
       });
 
     this.props.navigation.navigate('FinishLatihanSoal');
@@ -226,11 +229,12 @@ export default class Component extends React.Component {
   answerPressed = data => {
     a[this.state.index] = data;
     this.setState({onIndexAnswer: a[this.state.index]});
+    b[this.state.index] = `latihan_soal${this.state.indexLatihan[this.state.index]}`;
   };
 
   componentDidMount() {
     this.getData();
-  }
+  };
 
   render() {
     return (
