@@ -104,6 +104,37 @@ const styles = StyleSheet.create({
     color: '#515151',
     alignItems: 'center'
   },
+  textJawabanPressed: {
+    ...FONT_TEXT_PRIMARY,
+    margin: scale(15), 
+    fontSize: 15, 
+    color: '#fff', 
+    alignItems: 'center'
+  },
+  jawabanContainerBener: {
+    width: scale(320),
+    height: scale(55),
+    borderWidth: 1,
+    borderColor: '#00BFFF',
+    backgroundColor: 'green',
+    marginTop: scale(20),
+    marginRight: scale(20),
+    marginLeft: scale(20),
+    borderRadius: 5,
+    justifyContent: 'center'
+  },
+  jawabanContainerSalah: {
+    width: scale(320),
+    height: scale(55),
+    borderWidth: 1,
+    borderColor: '#00BFFF',
+    backgroundColor: 'red',
+    marginTop: scale(20),
+    marginRight: scale(20),
+    marginLeft: scale(20),
+    borderRadius: 5,
+    justifyContent: 'center'
+  },
   viewJawabanBener: {
     width: scale(320),
     height: scale(55),
