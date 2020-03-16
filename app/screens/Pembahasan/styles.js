@@ -19,8 +19,8 @@ const styles = StyleSheet.create({
   },
   buttonBack: {
     justifyContent: 'flex-end',
-    width: scale(40),
-    height: scale(40)
+    width: scale(45),
+    height: scale(45)
   },
   titleContainer: {
     width: '70%',
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   titleHeader: {
     ...FONT_BOLD_PRIMARY,
-    fontSize: 23,
+    fontSize: 25,
     color: '#000',
   },
   contentContainer: {
@@ -37,16 +37,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   viewNoSoal: {
-    width: scale(50), 
-    height: scale(35), 
+    width: scale(70), 
+    height: scale(40), 
     backgroundColor: '#AEE7F9', 
-    margin: scale(15), 
+    marginTop: scale(10), 
+    marginLeft: scale(20),
+    marginBottom: scale(10),
     borderRadius: 5
   },
   noSoal: {
     ...FONT_BOLD_PRIMARY,
     textAlign: 'center', 
-    marginTop: scale(5), 
+    marginTop: scale(7), 
     fontSize: 20,
   },
   viewPoin: {
@@ -58,7 +60,7 @@ const styles = StyleSheet.create({
     ...FONT_TEXT_PRIMARY,
     textAlign: 'center', 
     marginTop: scale(20), 
-    fontSize: 16, 
+    fontSize: 17, 
     color: 'red'
   },
   viewSoal: {
@@ -67,14 +69,14 @@ const styles = StyleSheet.create({
   },
   soal: {
     ...FONT_TEXT_PRIMARY,
-    marginTop: scale(5), 
+    marginTop: scale(10), 
     fontSize: 16, 
     lineHeight: 25, 
     color: '#515151'
   },
   viewJawaban: {
     width: scale(320),
-    height: scale(55),
+    height: scale(60),
     borderWidth: 1,
     borderColor: '#A3A3A3',
     marginTop: scale(15),
@@ -113,7 +115,7 @@ const styles = StyleSheet.create({
   },
   jawabanContainerBener: {
     width: scale(320),
-    height: scale(55),
+    height: scale(60),
     borderWidth: 1,
     borderColor: '#00BFFF',
     backgroundColor: 'green',
@@ -125,7 +127,7 @@ const styles = StyleSheet.create({
   },
   jawabanContainerSalah: {
     width: scale(320),
-    height: scale(55),
+    height: scale(60),
     borderWidth: 1,
     borderColor: '#00BFFF',
     backgroundColor: 'red',
@@ -137,7 +139,7 @@ const styles = StyleSheet.create({
   },
   viewJawabanBener: {
     width: scale(320),
-    height: scale(55),
+    height: scale(60),
     backgroundColor: '#3ECD77',
     marginTop: scale(15),
     marginRight: scale(20),
@@ -146,7 +148,7 @@ const styles = StyleSheet.create({
   },
   viewJawabanSalah: {
     width: scale(320),
-    height: scale(55),
+    height: scale(60),
     backgroundColor: '#F26565',
     marginTop: scale(15),
     marginRight: scale(20),
@@ -167,20 +169,38 @@ const styles = StyleSheet.create({
     borderRadius: 5, 
     margin: scale(10)
   },
+  nextPrevious: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    padding: scale(30)
+  },
   btnNext: {
-    width: scale(25),
+    width: scale(30),
+    height: scale(50)
+  },
+  btnNext2: {
+    width: scale(30),
     height: scale(50),
-    marginLeft: scale(40)
+    marginLeft: '82%',
+    marginTop: scale(30),
+    marginBottom: scale(30)
   },
   btnPrevious: {
-    width: scale(25),
+    width: scale(30),
+    height: scale(50)
+  },
+  btnPrevious2: {
+    width: scale(30),
+    height: scale(50)
+  },
+  btnSelesai: {
+    width: scale(150),
     height: scale(50),
-    marginLeft: scale(40),
-    marginRight: '50%'
+    marginRight: scale(80)
   },
   jawabanContainer: {
     width: scale(320),
-    height: scale(55),
+    height: scale(60),
     borderWidth: 1,
     borderColor: '#A3A3A3',
     marginTop: scale(20),
@@ -189,16 +209,6 @@ const styles = StyleSheet.create({
     borderRadius: 5,
     justifyContent: 'center'
   },
-  btnPrevious2: {
-    width: scale(25),
-    height: scale(50),
-    marginLeft: scale(40),
-    marginRight: scale(30)
-  },
-  btnSelesai: {
-    width: scale(140),
-    height: scale(50)
-  },
   pembahasan: {
     ...FONT_TEXT_PRIMARY,
     fontSize: 14,
@@ -206,12 +216,6 @@ const styles = StyleSheet.create({
     lineHeight: 18,
     justifyContent: 'center',
     padding: scale(15)
-  },
-  garis: {
-    alignSelf: 'center',
-    width: '90%',
-    marginTop: scale(15),
-    marginBottom: scale(40)
   }
 });
 

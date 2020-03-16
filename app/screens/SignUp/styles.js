@@ -14,8 +14,8 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   logoContainer: {
-    width: scale(540),
-    height: scale(90)
+    width: scale(550),
+    height: scale(95)
   },
   logo: {
     flex: 1,
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   textNamaLengkap: {
     ...FONT_TEXT_PRIMARY,
     width: '80%',
-    height: scale(50),
+    height: scale(55),
     borderColor: '#CCCCCC',
     borderWidth: 2,
     borderRadius: 5,
@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
   textEmail: {
     ...FONT_TEXT_PRIMARY,
     width: '80%',
-    height: scale(50),
+    height: scale(55),
     borderColor: '#CCCCCC',
     borderWidth: 2,
     borderRadius: 5,
@@ -47,7 +47,7 @@ const styles = StyleSheet.create({
   textSandi: {
     ...FONT_TEXT_PRIMARY,
     width: '80%',
-    height: scale(50),
+    height: scale(55),
     borderColor: '#CCCCCC',
     borderRadius: 5,
     borderWidth: 2,
@@ -58,7 +58,7 @@ const styles = StyleSheet.create({
   textKonfirmasiSandi: {
     ...FONT_TEXT_PRIMARY,
     width: '80%',
-    height: scale(50),
+    height: scale(55),
     borderColor: '#CCCCCC',
     borderRadius: 5,
     borderWidth: 2,
@@ -67,7 +67,7 @@ const styles = StyleSheet.create({
   },
   btnMasuk: {
     width: scale(500),
-    height: scale(48),
+    height: scale(47),
     marginTop: scale(20),
     marginBottom: scale(10)
   },

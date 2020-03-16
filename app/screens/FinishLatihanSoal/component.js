@@ -11,6 +11,7 @@ import {
   SafeAreaView,
   ScrollView,
   AsyncStorage,
+  StatusBar
 } from 'react-native';
 import firebase from 'firebase';
 import styles from './styles';
@@ -49,6 +50,7 @@ export default class Component extends React.Component {
   render() {
     return (
       <ImageBackground source={IMAGES.background2} style={styles.background}>
+        <StatusBar hidden />
         <SafeAreaView>
           <ScrollView>
             <View style={styles.mainContainer}>

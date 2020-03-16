@@ -25,12 +25,13 @@ export default class Component extends React.Component {
   render() {
     return (
         <View style={styles.mainContainer}>
+          <StatusBar hidden />
           <View>
             <PacmanIndicator color='#000'/>
           </View>
           <View style={styles.text}>
-          <Text>yaahh, koneksi internet tidak ditemukan</Text>
-          <Text>coba cek jaringanmu, dehh</Text>
+            <Text>yaahh, koneksi internet tidak ditemukan</Text>
+            <Text>coba cek jaringanmu, dehh</Text>
         </View>
       </View>
     );

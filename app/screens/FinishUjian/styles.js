@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     width: scale(90),
     height: scale(45),
     backgroundColor: '#FBDD56',
-    borderRadius: 5,
+    borderRadius: scale(5),
     margin: scale(10)
   },
   skor: {

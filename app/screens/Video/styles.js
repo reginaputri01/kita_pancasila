@@ -22,29 +22,28 @@ const styles = StyleSheet.create({
     width: '100%',
     height: '100%'
   },
-  container: {
+  headerContainer: {
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
-  view_header: {
-    width: '20%'
-  },
-  touch: {
-    padding: 15,
+  backContainer: {
+    width: '20%',
+    padding: scale(15),
     alignItems: 'flex-start'
   },
   buttonBack: {
     justifyContent: 'flex-end',
-    width: scale(40),
-    height: scale(40)
+    width: scale(45),
+    height: scale(45)
   },
-  view_title: {
-    width: '70%'
+  headerTitle: {
+    width: '70%',
+    marginTop: scale(20),
+    marginLeft: scale(75)
   },
   title: {
-    marginTop: 20,
-    marginLeft: 40,
     ...FONT_HEADLINE5_PRIMARY,
+    fontSize: 25,
     color: COLOR_BLACK
   },
   view_video: {

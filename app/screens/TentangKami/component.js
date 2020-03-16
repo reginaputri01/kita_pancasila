@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-color-literals */
 /* eslint-disable import/first */
 import React from 'react';
-import { View, Image, Text, TouchableOpacity, ScrollView, SafeAreaView } from 'react-native';
+import { View, Image, Text, TouchableOpacity, ScrollView, SafeAreaView, StatusBar } from 'react-native';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import IMAGES from '../../configs/images';
@@ -14,6 +14,7 @@ export default class Component extends React.Component {
   render() {
     return (
       <View style={styles.mainContainer}>
+        <StatusBar hidden />
         <SafeAreaView>
           <ScrollView>
             <View style={styles.headerContainer}>
@@ -50,7 +51,7 @@ export default class Component extends React.Component {
               </View>
               <View style={styles.textContainer}>
                 <Text style={styles.nama}>Regina Putri Arinda</Text>
-                <Text style={styles.tugas}>Android Developer</Text>
+                <Text style={styles.tugas}>Mobile Android Developer</Text>
                 <Text style={styles.email}>Email : reginaputria2003@gmail.com</Text>
               </View>
             </View>
@@ -61,7 +62,7 @@ export default class Component extends React.Component {
               </View>
               <View style={styles.textContainer}>
                 <Text style={styles.nama}>Yesica Adelia Ramadani</Text>
-                <Text style={styles.tugas}>Android Developer</Text>
+                <Text style={styles.tugas}>Mobile Android Developer</Text>
                 <Text style={styles.email}>Email : yesica.adelia@gmail.com</Text>
               </View>
             </View>

@@ -23,16 +23,17 @@ const styles = StyleSheet.create({
   },
   buttonBack: {
     justifyContent: 'flex-end',
-    width: scale(40),
-    height: scale(40)
+    width: scale(45),
+    height: scale(45)
   },
   headerTitle: {
     width: '100%',
     marginTop: scale(20),
-    marginLeft: scale(25)
+    marginLeft: scale(30)
   },
   title: {
     ...FONT_HEADLINE5_PRIMARY,
+    fontSize: 25,
     color: COLOR_BLACK
   },
   deskripsiContainer: {

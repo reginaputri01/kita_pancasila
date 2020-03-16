@@ -1,7 +1,7 @@
 /* eslint-disable react-native/no-color-literals */
 /* eslint-disable import/first */
 import React from 'react';
-import {View, Image, Text, TouchableOpacity, AsyncStorage, SafeAreaView, Alert, ScrollView} from 'react-native';
+import {View, Image, Text, TouchableOpacity, AsyncStorage, SafeAreaView, Alert, ScrollView, StatusBar} from 'react-native';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import firebase from 'firebase';
@@ -76,6 +76,7 @@ export default class Component extends React.Component {
   render() {
     return (
       <SafeAreaView style={styles.mainContainer}>
+        <StatusBar hidden />
         <ScrollView>
           <View style={styles.header}>
             <View style={styles.container}>

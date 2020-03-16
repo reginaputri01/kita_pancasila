@@ -11,27 +11,37 @@ import { scale } from '../../utils/scaling';
 import METRICS from '../../constants/metrics';
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
   background: {
     width: '100%',
     height: '100%'
   },
-  view_header: {
-    width: '20%'
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
   },
-  view_title: {
-    width: '70%'
+  backContainer: {
+    width: '20%',
+    padding: scale(15),
+    alignItems: 'flex-start'
+  },
+  buttonBack: {
+    justifyContent: 'flex-end',
+    width: scale(45),
+    height: scale(45)
+  },
+  headerTitle: {
+    width: '70%',
+    marginTop: scale(20),
+    marginLeft: scale(75)
+  },
+  title: {
+    ...FONT_HEADLINE5_PRIMARY,
+    fontSize: 25,
+    color: COLOR_BLACK
   },
   view_content: {
     width: '100%',
     paddingTop: scale(15)
-  },
-  touch: {
-    padding: scale(15),
-    alignItems: 'flex-start'
   },
   text: {
     ...FONT_BODY1_PRIMARY,
@@ -64,17 +74,6 @@ const styles = StyleSheet.create({
     paddingRight: METRICS.doubleBaseMargin,
     marginBottom: scale(50),
     lineHeight: scale(28)
-  },
-  buttonBack: {
-    justifyContent: 'flex-end',
-    width: scale(40),
-    height: scale(40)
-  },
-  title: {
-    marginTop: METRICS.doubleBaseMargin,
-    marginLeft: scale(40),
-    ...FONT_HEADLINE5_PRIMARY,
-    color: COLOR_BLACK
   }
 });
 

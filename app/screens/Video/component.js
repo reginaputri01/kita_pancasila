@@ -6,7 +6,8 @@ import {
   TouchableOpacity,
   ImageBackground,
   ScrollView,
-  SafeAreaView
+  SafeAreaView,
+  StatusBar
 } from 'react-native';
 import styles from './styles';
 import PropTypes from 'prop-types';
@@ -24,27 +25,23 @@ export default class Component extends React.Component {
     };
   }
 
-  onPressBack = () => {
+  onBack = () => {
     this.props.navigation.navigate('Materi');
   };
 
   render() {
     return (
       <ImageBackground source={IMAGES.background} style={styles.background}>
+        <StatusBar hidden />
         <SafeAreaView>
           <ScrollView>
-            <View style={styles.container}>
-              <View style={styles.view_header}>
-                <TouchableOpacity style={styles.touch} onPress={this.onPressBack}>
-                  <Image
-                    source={IMAGES.buttonBack}
-                    resizeMode="contain"
-                    style={styles.buttonBack}
-                    onPress={this.onPressBack}
-                  />
+            <View style={styles.headerContainer}>
+              <View style={styles.backContainer}>
+                <TouchableOpacity onPress={this.onBack}>
+                  <Image source={IMAGES.buttonBack} resizeMode="contain" style={styles.buttonBack} />
                 </TouchableOpacity>
               </View>
-              <View style={styles.view_title}>
+              <View style={styles.headerTitle}>
                 <Text style={styles.title}>VIDEO</Text>
               </View>
             </View>

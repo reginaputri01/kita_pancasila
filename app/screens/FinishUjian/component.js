@@ -10,6 +10,7 @@ import {
   ImageBackground,
   SafeAreaView,
   ScrollView,
+  StatusBar
 } from 'react-native';
 import styles from './styles';
 import PropTypes from 'prop-types';
@@ -47,6 +48,7 @@ export default class Component extends React.Component {
   render() {
     return (
       <ImageBackground source={IMAGES.background2} style={styles.background}>
+        <StatusBar hidden />
         <SafeAreaView>
           <ScrollView>
             <View style={styles.mainContainer}>
