@@ -9,6 +9,7 @@ import {
   SafeAreaView,
   ScrollView,
   AsyncStorage,
+  StatusBar
 } from 'react-native';
 import PropTypes from 'prop-types';
 import firebase from 'firebase';
@@ -124,7 +125,7 @@ export default class Component extends React.Component {
             <Image
               source={IMAGES.next}
               resizeMode="contain"
-              style={styles.btnNext}
+              style={styles.btnNext2}
             />
           </TouchableOpacity>
         </View>
@@ -205,8 +206,8 @@ export default class Component extends React.Component {
 
   render() {
     return (
-      <ScrollView>
         <MainScreen style={styles.mainContainer}>
+          <StatusBar hidden />
           <View style={styles.header}>
             <View style={styles.container}>
               <TouchableOpacity
@@ -224,6 +225,7 @@ export default class Component extends React.Component {
             </View>
           </View>
 
+          <ScrollView>
           <View>
             <View style={styles.contentContainer}>
               <View style={styles.viewNoSoal}>
@@ -292,9 +294,10 @@ export default class Component extends React.Component {
             />
 
             {this.navigate()}
+            
           </View>
+          </ScrollView>
         </MainScreen>
-      </ScrollView>
     );
   }
 }

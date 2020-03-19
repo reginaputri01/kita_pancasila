@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text, TouchableOpacity, ImageBackground, ScrollView, SafeAreaView } from 'react-native';
+import { View, Image, Text, TouchableOpacity, ImageBackground, ScrollView, SafeAreaView, StatusBar } from 'react-native';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import IMAGES from '../../configs/images';
@@ -31,19 +31,19 @@ export default class Component extends React.Component {
   render() {
     return (
       <ImageBackground source={IMAGES.background} style={styles.background}>
-        <SafeAreaView>
-        <ScrollView>
-          <View style={styles.container}>
-              <View style={styles.view_header}>
-                <TouchableOpacity style={styles.touch} onPress={this.onBack}>
-                  <Image source={IMAGES.buttonBack} resizeMode="contain" style={styles.buttonBack} />
-                </TouchableOpacity>
-              </View>
-              <View style={styles.view_title}>
-                <Text style={styles.title}>ARTIKEL</Text>
-              </View>
+        <StatusBar hidden />
+          <View style={styles.headerContainer}>
+            <View style={styles.backContainer}>
+              <TouchableOpacity onPress={this.onBack}>
+                <Image source={IMAGES.buttonBack} resizeMode="contain" style={styles.buttonBack} />
+              </TouchableOpacity>
             </View>
+            <View style={styles.headerTitle}>
+              <Text style={styles.title}>ARTIKEL</Text>
+            </View>
+          </View>
           
+          <ScrollView>
             <View style={styles.content}>
               <TouchableOpacity onPress={this.onPressBab1}>
                 <Image source={IMAGES.bab1} style={styles.btnBab} resizeMode="contain" />
@@ -65,7 +65,6 @@ export default class Component extends React.Component {
             </TouchableOpacity>
           </View>
         </ScrollView>
-      </SafeAreaView>
      </ImageBackground>
     );
   }

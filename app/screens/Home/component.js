@@ -1,6 +1,6 @@
 /* eslint-disable import/first */
 import React from 'react';
-import { View, Image, TouchableOpacity, ImageBackground, SafeAreaView, ScrollView } from 'react-native';
+import { View, Image, TouchableOpacity, ImageBackground, SafeAreaView, ScrollView, StatusBar } from 'react-native';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import IMAGES from '../../configs/images';
@@ -20,6 +20,7 @@ export default class Component extends React.Component {
   render() {
     return (
       <ImageBackground source={IMAGES.background} style={styles.background}>
+        <StatusBar hidden />
         <SafeAreaView style={styles.container}>
           <ScrollView>
           <TouchableOpacity style={styles.settingContainer} onPress={this.onPressSetting}>

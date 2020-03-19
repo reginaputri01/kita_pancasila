@@ -1,60 +1,50 @@
 import { StyleSheet } from 'react-native';
 import { COLOR_BLACK, FONT_HEADLINE5_PRIMARY } from '../../styles';
 import { scale } from '../../utils/scaling';
-import METRICS from '../../constants/metrics';
 
 const styles = StyleSheet.create({
-  container: {
-    flexDirection: 'row',
-    justifyContent: 'space-between'
-  },
-  background: {
+  mainContainer: {
     width: '100%',
     height: '100%'
   },
-  touch: {
+  headerContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-between'
+  },
+  backContainer: {
+    width: '20%',
     padding: scale(15),
     alignItems: 'flex-start'
   },
-  view_header: {
-    width: '20%'
+  buttonBack: {
+    justifyContent: 'flex-end',
+    width: scale(45),
+    height: scale(45)
   },
-  view_title: {
-    width: '70%'
+  headerTitle: {
+    width: '70%',
+    marginTop: scale(20),
+    marginLeft: scale(65)
   },
   title: {
-    marginTop: METRICS.doubleBaseMargin,
-    marginLeft: scale(30),
     ...FONT_HEADLINE5_PRIMARY,
+    fontSize: 25,
     color: COLOR_BLACK
   },
-  view_body: {
+  contentContainer: {
     flex: 1,
     flexDirection: 'row',
     justifyContent: 'space-between',
     padding: scale(15)
   },
-  view_artikel: {
-    width: '50%'
-  },
-  touch_artikel: {
+  materiContainer: {
+    width: '50%',
     alignItems: 'center'
   },
-  img: {
-    width: scale(156),
+  materi: {
+    width: scale(152),
     height: scale(164),
     margin: scale(5)
-  },
-  view_video: {
-    width: '50%'
-  },
-  touch_video: {
-    alignItems: 'center'
-  },
-  buttonBack: {
-    justifyContent: 'flex-end',
-    width: scale(40),
-    height: scale(40)
   }
 });
 

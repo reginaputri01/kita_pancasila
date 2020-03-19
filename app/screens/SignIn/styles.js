@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   textEmail: {
     ...FONT_TEXT_PRIMARY,
     width: '80%',
-    height: scale(50),
+    height: scale(55),
     borderColor: '#CCCCCC',
     borderWidth: 2,
     borderRadius: 5,
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   textSandi: {
     ...FONT_TEXT_PRIMARY,
     width: '80%',
-    height: scale(50),
+    height: scale(55),
     borderColor: '#CCCCCC',
     borderRadius: 5,
     borderWidth: 2,
@@ -46,8 +46,8 @@ const styles = StyleSheet.create({
     padding: scale(10)
   },
   btnMasuk: {
-    width: scale(500),
-    height: scale(48),
+    width: scale(450),
+    height: scale(47),
     marginTop: scale(5),
     marginBottom: scale(10)
   },

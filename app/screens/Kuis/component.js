@@ -2,7 +2,7 @@
 /* eslint-disable import/first */
 /* eslint-disable react/sort-comp */
 import React from 'react';
-import { View, Image, Text, TouchableOpacity, ImageBackground, ScrollView, Alert } from 'react-native';
+import { View, Image, Text, TouchableOpacity, ImageBackground, ScrollView, Alert, StatusBar } from 'react-native';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import IMAGES from '../../configs/images';
@@ -23,14 +23,14 @@ export default class Component extends React.Component {
   onLatSoal = () => {
     Alert.alert(
       'Ayo Mulai!',
-      'Latihan soal, 10 soal.',
+      'Latihan soal (10 soal, disertai pembahasan)',
       [
         {
           text: 'Kembali'
         },
         {
           text: 'OK',
-          onPress: () => this.props.navigation.navigate('LatihanSoal')
+          onPress: () => this.props.navigation.navigate('Loading')
         }
       ]
     )
@@ -39,14 +39,14 @@ export default class Component extends React.Component {
   onUjian = () => {
     Alert.alert(
       'Ayo Mulai!',
-      'Ujian, 10 soal, disertai pembahasan.',
+      'Ujian (15 soal, tanpa pembahasan)',
       [
         {
           text: 'Kembali'
         },
         {
           text: 'OK',
-          onPress: () => this.props.navigation.navigate('Ujian')
+          onPress: () => this.props.navigation.navigate('Loading2')
         }
       ]
     )
@@ -55,6 +55,7 @@ export default class Component extends React.Component {
   render() {
     return (
       <ImageBackground source={IMAGES.background} style={styles.mainContainer}>
+        <StatusBar hidden />
         <ScrollView>
           <View style={styles.headerContainer}>
             <View style={styles.backContainer}>

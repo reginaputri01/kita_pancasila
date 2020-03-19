@@ -6,7 +6,7 @@
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
 import React from 'react';
-import { Text, View, Image, TextInput, TouchableOpacity, ImageBackground, ScrollView, Alert, SafeAreaView, AsyncStorage } from 'react-native';
+import { Text, View, Image, TextInput, TouchableOpacity, ImageBackground, ScrollView, Alert, SafeAreaView, AsyncStorage, StatusBar } from 'react-native';
 import PropTypes from 'prop-types';
 import firebase from 'firebase';
 import MainScreen from '../../components/layouts/MainScreen';
@@ -87,6 +87,7 @@ export default class Component extends React.Component {
     const { email, password, namaLengkap, repeatPassword } = this.state;
     return (
       <ImageBackground source={IMAGES.background} style={styles.mainContainer}>
+        <StatusBar hidden />
         <SafeAreaView>
           <ScrollView>
             <MainScreen style={styles.container}>

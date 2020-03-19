@@ -13,31 +13,31 @@ const styles = StyleSheet.create({
     marginTop: scale(15)
   },
   viewNoSoal: {
-    width: scale(65),
-    height: scale(35),
+    width: scale(70),
+    height: scale(40),
     backgroundColor: '#AEE7F9',
     margin: scale(15),
-    borderRadius: 5
+    borderRadius: scale(5)
   },
   noSoal: {
     ...FONT_BOLD_PRIMARY,
     textAlign: 'center',
-    marginTop: scale(5),
-    fontSize: 17
+    marginTop: scale(7),
+    fontSize: 20
   },
   exitKuis: {
     width: scale(90),
-    height: scale(35),
+    height: scale(40),
     backgroundColor: '#F97484',
     borderColor: '#E8495C',
     borderWidth: 2,
     margin: scale(15),
-    borderRadius: 5
+    borderRadius: scale(5)
   },
   textExit: {
     ...FONT_BOLD_PRIMARY,
     textAlign: 'center',
-    marginTop: scale(5),
+    marginTop: scale(7),
     fontSize: 16,
     color: '#fff'
   },
@@ -47,21 +47,21 @@ const styles = StyleSheet.create({
   },
   textSoal: {
     ...FONT_TEXT_PRIMARY,
-    marginTop: scale(5),
-    marginBottom: scale(10),
+    marginTop: scale(10),
+    marginBottom: scale(15),
     fontSize: 16,
     lineHeight: 25,
     color: '#515151'
   },
   jawabanContainer: {
     width: scale(320),
-    height: scale(55),
+    height: scale(60),
     borderWidth: 1,
     borderColor: '#A3A3A3',
     marginTop: scale(20),
     marginRight: scale(20),
     marginLeft: scale(20),
-    borderRadius: 5,
+    borderRadius: scale(5),
     justifyContent: 'center'
   },
   textJawaban: {
@@ -80,14 +80,14 @@ const styles = StyleSheet.create({
   },
   jawabanPressedContainer: {
     width: scale(320),
-    height: scale(55),
+    height: scale(60),
     borderWidth: 1,
     borderColor: '#00BFFF',
     backgroundColor: '#00BFFF',
     marginTop: scale(20),
     marginRight: scale(20),
     marginLeft: scale(20),
-    borderRadius: 5,
+    borderRadius: scale(5),
     justifyContent: 'center'
   },
   nextPrevious: {
@@ -96,24 +96,30 @@ const styles = StyleSheet.create({
     marginTop: scale(20)
   },
   btnNext: {
-    width: scale(25),
+    width: scale(30),
     height: scale(50),
     marginLeft: scale(40)
   },
+  btnNext2: {
+    width: scale(30),
+    height: scale(50),
+    marginLeft: '86%',
+    marginTop: scale(15)
+  },
   btnPrevious: {
-    width: scale(25),
+    width: scale(30),
     height: scale(50),
     marginLeft: scale(40),
     marginRight: '50%'
   },
   btnPrevious2: {
-    width: scale(25),
+    width: scale(30),
     height: scale(50),
     marginLeft: scale(40),
     marginRight: scale(30)
   },
   btnSelesai: {
-    width: scale(140),
+    width: scale(150),
     height: scale(50)
   }
 });

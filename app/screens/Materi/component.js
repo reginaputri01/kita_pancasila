@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Image, Text, TouchableOpacity, ImageBackground, ScrollView } from 'react-native';
+import { View, Image, Text, TouchableOpacity, ImageBackground, ScrollView, StatusBar } from 'react-native';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import IMAGES from '../../configs/images';
@@ -17,28 +17,41 @@ export default class Component extends React.Component {
 
   render() {
     return (
-      <ImageBackground source={IMAGES.background} style={styles.background}>
+      <ImageBackground source={IMAGES.background} style={styles.mainContainer}>
+        <StatusBar hidden />
         <ScrollView>
-          <View style={styles.container}>
-            <View style={styles.view_header}>
-              <TouchableOpacity style={styles.touch} onPress={this.onBack}>
+          <View style={styles.headerContainer}>
+            <View style={styles.backContainer}>
+              <TouchableOpacity onPress={this.onBack}>
                 <Image source={IMAGES.buttonBack} resizeMode="contain" style={styles.buttonBack} />
               </TouchableOpacity>
             </View>
-            <View style={styles.view_title}>
+            <View style={styles.headerTitle}>
               <Text style={styles.title}>MATERI</Text>
             </View>
           </View>
 
-          <View style={styles.view_body}>
-            <View style={styles.view_artikel}>
-              <TouchableOpacity style={styles.touch_artikel} onPress={this.onArtikel}>
-                <Image source={IMAGES.buttonArtikel} style={styles.img} resizeMode="contain" />
+          <View style={styles.contentContainer}>
+            <View style={styles.materiContainer}>
+              <TouchableOpacity
+                onPress={this.onArtikel}
+              >
+                <Image
+                  source={IMAGES.buttonArtikel}
+                  style={styles.materi}
+                  resizeMode="contain"
+                />
               </TouchableOpacity>
             </View>
-            <View style={styles.view_video}>
-              <TouchableOpacity style={styles.touch_video} onPress={this.onVideo}>
-                <Image source={IMAGES.buttonVideo} style={styles.img} resizeMode="contain" />
+            <View style={styles.materiContainer}>
+              <TouchableOpacity
+                onPress={this.onVideo}
+              >
+                <Image
+                  source={IMAGES.buttonVideo}
+                  style={styles.materi}
+                  resizeMode="contain"
+                />
               </TouchableOpacity>
             </View>
           </View>

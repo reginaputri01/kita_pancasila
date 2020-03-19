@@ -21,8 +21,8 @@ const styles = StyleSheet.create({
   },
   buttonBack: {
     justifyContent: 'flex-end',
-    width: scale(40),
-    height: scale(40)
+    width: scale(45),
+    height: scale(45)
   },
   buttonLogout: {
     width: scale(400),
@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
   titleHeader: {
     ...FONT_BOLD_PRIMARY,
-    fontSize: 23,
+    fontSize: 25,
     color: '#000',
   },
   profileContainer: {

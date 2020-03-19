@@ -1,33 +1,30 @@
 import React from 'react';
-import { View, Image, Text, TouchableOpacity, ScrollView, ImageBackground } from 'react-native';
+import { View, Image, Text, TouchableOpacity, ScrollView, ImageBackground, StatusBar } from 'react-native';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import IMAGES from '../../configs/images';
 import I18n from '../../i18n';
 
 export default class Component extends React.Component {
-  onPressBack = () => {
+  onBack = () => {
     this.props.navigation.navigate('ListArtikel');
   };
 
   render() {
     return (
       <ImageBackground source={IMAGES.backgroundv2} style={styles.background}>
-        <View style={styles.container}>
-          <View style={styles.view_header}>
-            <TouchableOpacity style={styles.touch} onPress={this.onPressBack}>
-              <Image
-                source={IMAGES.buttonBack}
-                resizeMode="contain"
-                style={styles.buttonBack}
-                onPress={this.onPressBack}
-              />
+        <StatusBar hidden />
+        <View style={styles.headerContainer}>
+          <View style={styles.backContainer}>
+            <TouchableOpacity onPress={this.onBack}>
+              <Image source={IMAGES.buttonBack} resizeMode="contain" style={styles.buttonBack} />
             </TouchableOpacity>
           </View>
-          <View style={styles.view_title}>
-            <Text style={styles.title}>{I18n.t('bab5')}</Text>
+          <View style={styles.headerTitle}>
+            <Text style={styles.title}>BAB 5</Text>
           </View>
         </View>
+
         <ScrollView>
           <View style={styles.view_content}>
             <Text style={styles.text_title}>{I18n.t('bab5title')}</Text>

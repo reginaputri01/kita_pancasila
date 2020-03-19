@@ -16,11 +16,11 @@ const styles = StyleSheet.create({
   },
   setting: {
     justifyContent: 'flex-end',
-    width: scale(40),
-    height: scale(40)
+    width: scale(45),
+    height: scale(45)
   },
   logoContainer: {
-    paddingTop: scale(40),
+    paddingTop: scale(55),
     alignItems: 'center'
   },
   logo: {

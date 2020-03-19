@@ -22,20 +22,20 @@ export default class Component extends React.Component {
     );
   render() {
     return (
-        <View style={styles.mainContainer}>
-          <View style={styles.container}>
-            <StatusBar hidden />
-            <View style={styles.logoContainer}>
-              <Image source={IMAGES.logo} resizeMode="contain" style={styles.logo} />
-            </View>
-          </View>
-          <View style={styles.textContainer}>
-            <Text style={styles.text}>SUPPORTED BY :</Text>
-          </View>
-          <View style={styles.footerContainer}>
-            <Image source={IMAGES.logoTelkom} resizeMode="contain" style={styles.logoTelkom} />
+      <View style={styles.mainContainer}>
+        <View style={styles.container}>
+          <StatusBar hidden />
+          <View style={styles.logoContainer}>
+            <Image source={IMAGES.logo} resizeMode="contain" style={styles.logo} />
           </View>
         </View>
+        <View style={styles.textContainer}>
+          <Text style={styles.text}>SUPPORTED BY :</Text>
+        </View>
+        <View style={styles.footerContainer}>
+          <Image source={IMAGES.logoTelkom} resizeMode="contain" style={styles.logoTelkom} />
+        </View>
+      </View>
     );
   }
 }

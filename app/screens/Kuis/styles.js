@@ -18,16 +18,17 @@ const styles = StyleSheet.create({
   },
   buttonBack: {
     justifyContent: 'flex-end',
-    width: scale(40),
-    height: scale(40)
+    width: scale(45),
+    height: scale(45)
   },
   headerTitle: {
     width: '70%',
     marginTop: scale(20),
-    marginLeft: scale(85)
+    marginLeft: scale(80)
   },
   title: {
     ...FONT_HEADLINE5_PRIMARY,
+    fontSize: 25,
     color: COLOR_BLACK
   },
   contentContainer: {
@@ -41,7 +42,7 @@ const styles = StyleSheet.create({
     alignItems: 'center'
   },
   kuis: {
-    width: scale(156),
+    width: scale(152),
     height: scale(164),
     margin: scale(5)
   }
