@@ -5,7 +5,7 @@ import {FONT_TEXT_PRIMARY, FONT_BOLD_PRIMARY} from '../../styles';
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    backgroundColor: '#fff'
+    backgroundColor: 'white'
   },
   headerContainer: {
     flexDirection: 'row',

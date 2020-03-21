@@ -4,7 +4,7 @@ import {FONT_TEXT_PRIMARY, FONT_BOLD_PRIMARY} from '../../styles';
 
 const styles = StyleSheet.create({
   mainContainer: {
-    backgroundColor: '#fff'
+    backgroundColor: 'white'
   },
   header: {
     flexDirection: 'row',
@@ -116,24 +116,22 @@ const styles = StyleSheet.create({
   jawabanContainerBener: {
     width: scale(320),
     height: scale(60),
-    borderWidth: 1,
-    borderColor: '#00BFFF',
     backgroundColor: 'green',
-    marginTop: scale(20),
+    marginTop: scale(15),
     marginRight: scale(20),
     marginLeft: scale(20),
+    padding: scale(10),
     borderRadius: 5,
     justifyContent: 'center'
   },
   jawabanContainerSalah: {
     width: scale(320),
     height: scale(60),
-    borderWidth: 1,
-    borderColor: '#00BFFF',
     backgroundColor: 'red',
-    marginTop: scale(20),
+    marginTop: scale(15),
     marginRight: scale(20),
     marginLeft: scale(20),
+    padding: scale(10),
     borderRadius: 5,
     justifyContent: 'center'
   },
@@ -172,40 +170,45 @@ const styles = StyleSheet.create({
   nextPrevious: {
     flexDirection: 'row',
     justifyContent: 'space-between',
-    padding: scale(30)
+    paddingRight: scale(30),
+    paddingLeft: scale(30)
   },
   btnNext: {
     width: scale(30),
-    height: scale(50)
+    height: scale(50),
+    marginBottom: scale(20)
   },
   btnNext2: {
     width: scale(30),
     height: scale(50),
     marginLeft: '82%',
-    marginTop: scale(30),
-    marginBottom: scale(30)
+    marginBottom: scale(20)
   },
   btnPrevious: {
     width: scale(30),
-    height: scale(50)
+    height: scale(50),
+    marginBottom: scale(20)
   },
   btnPrevious2: {
     width: scale(30),
-    height: scale(50)
+    height: scale(50),
+    marginBottom: scale(20)
   },
   btnSelesai: {
     width: scale(150),
     height: scale(50),
-    marginRight: scale(80)
+    marginRight: scale(80),
+    marginBottom: scale(20)
   },
   jawabanContainer: {
     width: scale(320),
     height: scale(60),
     borderWidth: 1,
     borderColor: '#A3A3A3',
-    marginTop: scale(20),
+    marginTop: scale(15),
     marginRight: scale(20),
     marginLeft: scale(20),
+    padding: scale(10),
     borderRadius: 5,
     justifyContent: 'center'
   },

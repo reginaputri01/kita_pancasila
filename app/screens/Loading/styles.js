@@ -6,7 +6,7 @@ import METRICS from '../../constants/metrics';
 const styles = StyleSheet.create({
   mainContainer: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: 'white',
     justifyContent: 'center'
   },
   text: {
