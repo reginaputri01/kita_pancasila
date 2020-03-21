@@ -61,7 +61,7 @@ export default class Component extends React.Component {
               <Text style={styles.titleSkor}>Skor :</Text>
 
               <View style={styles.skorContainer}>
-                <Text style={styles.skor}>{this.state.points * 10}/100</Text>
+                <Text style={styles.skor}>{this.state.points * 6.67}/100</Text>
               </View>
 
               <TouchableOpacity onPress={this.pressTutup}>

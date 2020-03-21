@@ -53,9 +53,7 @@ export default class Component extends React.Component {
         .catch((error) => {
           error.code = "Gagal"
 
-          if (this.state.namaLengkap.length == 0) {
-            error.message = "Form harus diisi."
-          } else if (error.message == "The email address is badly formatted.") {
+          if (error.message == "The email address is badly formatted.") {
             error.message = "Email tidak valid."
           } else if (this.state.password.length < 6) {
             error.message = "Kata sandi harus lebih dari 6 karakter."
