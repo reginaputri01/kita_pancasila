@@ -23,26 +23,16 @@ const styles = StyleSheet.create({
     height: undefined,
     marginBottom: scale(30)
   },
-  textEmail: {
+  textInput: {
     ...FONT_TEXT_PRIMARY,
     width: '80%',
     height: scale(55),
+    marginBottom: 10,
     borderColor: '#CCCCCC',
     borderWidth: 2,
+    color: 'black',
     borderRadius: 5,
     backgroundColor: '#FBFCFE',
-    margin: scale(15),
-    padding: scale(10)
-  },
-  textSandi: {
-    ...FONT_TEXT_PRIMARY,
-    width: '80%',
-    height: scale(55),
-    borderColor: '#CCCCCC',
-    borderRadius: 5,
-    borderWidth: 2,
-    backgroundColor: '#FBFCFE',
-    marginBottom: scale(15),
     padding: scale(10)
   },
   btnMasuk: {

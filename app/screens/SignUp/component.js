@@ -6,7 +6,20 @@
 /* eslint-disable no-console */
 /* eslint-disable no-alert */
 import React from 'react';
-import { Text, View, Image, TextInput, TouchableOpacity, ImageBackground, ScrollView, Alert, SafeAreaView, AsyncStorage, StatusBar } from 'react-native';
+import {
+  Text,
+  View,
+  Image,
+  TextInput,
+  TouchableOpacity,
+  ImageBackground,
+  ScrollView,
+  Alert,
+  SafeAreaView,
+  AsyncStorage,
+  StatusBar,
+  KeyboardAvoidingView,
+} from 'react-native';
 import PropTypes from 'prop-types';
 import firebase from 'firebase';
 import MainScreen from '../../components/layouts/MainScreen';
@@ -26,53 +39,53 @@ export default class Component extends React.Component {
       disableButton: true,
       isHidden: true,
       isLoading: false,
-      loggedIn: null
+      loggedIn: null,
     };
   }
 
   toSignIn = () => {
     this.props.navigation.navigate('SignIn');
-  }
+  };
 
   signUp = () => {
     const db = firebase.app().database();
     const email = this.state.email.split('@');
     try {
       if (this.state.password == this.state.repeatPassword) {
-        firebase.auth().createUserWithEmailAndPassword(this.state.email, this.state.password)
-        .then(() => {
-          db.ref().child(`users/${email[0]}`).set({
-            nama_lengkap: this.state.namaLengkap
-          });
-          Alert.alert(
-            'Berhasil',
-            `Ayo masuk!`
-          );
-          this.props.navigation.navigate('SignIn');
-        })
-        .catch((error) => {
-          error.code = "Gagal"
+        firebase
+          .auth()
+          .createUserWithEmailAndPassword(this.state.email, this.state.password)
+          .then(() => {
+            db.ref()
+              .child(`users/${email[0]}`)
+              .set({
+                nama_lengkap: this.state.namaLengkap,
+              });
+            Alert.alert('Berhasil', `Ayo masuk!`);
+            this.props.navigation.navigate('SignIn');
+          })
+          .catch(error => {
+            error.code = 'Gagal';
 
-          if (this.state.namaLengkap.length == 0) {
-            error.message = "Form harus diisi."
-          } else if (error.message == "The email address is badly formatted.") {
-            error.message = "Email tidak valid."
-          } else if (this.state.password.length < 6) {
-            error.message = "Kata sandi harus lebih dari 6 karakter."
-          }
+            if (this.state.namaLengkap.length == 0) {
+              error.message = 'Form harus diisi.';
+            } else if (
+              error.message == 'The email address is badly formatted.'
+            ) {
+              error.message = 'Email tidak valid.';
+            } else if (this.state.password.length < 6) {
+              error.message = 'Kata sandi harus lebih dari 6 karakter.';
+            }
 
-          Alert.alert(error.code, error.message, {
-            text: 'Tutup'
+            Alert.alert(error.code, error.message, {
+              text: 'Tutup',
+            });
           });
-        });
       } else {
-        Alert.alert(
-          'Gagal',
-          'Kata sandi tidak sesuai.'
-        )
+        Alert.alert('Gagal', 'Kata sandi tidak sesuai.');
       }
-    } catch(error) {
-      console.log(error)
+    } catch (error) {
+      console.log(error);
     }
   };
 
@@ -84,7 +97,7 @@ export default class Component extends React.Component {
   }
 
   render() {
-    const { email, password, namaLengkap, repeatPassword } = this.state;
+    const {email, password, namaLengkap, repeatPassword} = this.state;
     return (
       <ImageBackground source={IMAGES.background} style={styles.mainContainer}>
         <StatusBar hidden />
@@ -92,49 +105,61 @@ export default class Component extends React.Component {
           <ScrollView>
             <MainScreen style={styles.container}>
               <View style={styles.logoContainer}>
-                <Image source={IMAGES.logo2} resizeMode="contain" style={styles.logo} />
+                <Image
+                  source={IMAGES.logo2}
+                  resizeMode="contain"
+                  style={styles.logo}
+                />
               </View>
-              <TextInput
-                underlineColorAndroid="transparent"
-                style={styles.textNamaLengkap}
-                placeholder="Nama Lengkap"
-                isRequired
-                editable
-                value={namaLengkap}
-                onChangeText={value => this.setState({ namaLengkap: value })}
-              />
-              <TextInput
-                underlineColorAndroid="transparent"
-                style={styles.textEmail}
-                placeholder="Email"
-                isRequired
-                editable
-                autoCapitalize='none'
-                value={email}
-                onChangeText={value => this.setState({ email: value })}
-              />
-              <TextInput
-                underlineColorAndroid="transparent"
-                style={styles.textSandi}
-                placeholder="Kata sandi"
-                isRequired
-                editable
-                secureTextEntry
-                value={password}
-                onChangeText={value => this.setState({ password: value })}
-              />
-              <TextInput
-                underlineColorAndroid="transparent"
-                style={styles.textKonfirmasiSandi}
-                placeholder="Konfirmasi kata sandi"
-                isRequired
-                editable
-                secureTextEntry
-                value={repeatPassword}
-                onChangeText={value => this.setState({ repeatPassword: value })}
-              />
+                <TextInput
+                  underlineColorAndroid="transparent"
+                  placeholder="Nama Lengkap"
+                  style={styles.textInput}
+                  placeholderTextColor="rgba(0,0,0,0.5)"
+                  isRequired
+                  editable
+                  value={namaLengkap}
+                  onChangeText={value => this.setState({namaLengkap: value})}
+                />
+                <TextInput
+                  underlineColorAndroid="transparent"
+                  style={styles.textInput}
+                  placeholderTextColor="rgba(0,0,0,0.5)"
+                  placeholder="Email"
+                  isRequired
+                  editable
+                  autoCapitalize="none"
+                  value={email}
+                  onChangeText={value => this.setState({email: value})}
+                />
+                <TextInput
+                  underlineColorAndroid="transparent"
+                  style={styles.textInput}
+                  placeholderTextColor="rgba(0,0,0,0.5)"
+                  placeholder="Kata sandi"
+                  isRequired
+                  editable
+                  secureTextEntry
+                  value={password}
+                  onChangeText={value => this.setState({password: value})}
+                />
+                <TextInput
+                  underlineColorAndroid="transparent"
+                  style={styles.textInput}
+                  placeholderTextColor="rgba(0,0,0,0.5)"
+                  placeholder="Konfirmasi kata sandi"
+                  isRequired
+                  editable
+                  secureTextEntry
+                  value={repeatPassword}
+                  onChangeText={value => this.setState({repeatPassword: value})}
+                />
               <TouchableOpacity onPress={this.signUp}>
-                <Image source={IMAGES.buttonDaftar} style={styles.btnMasuk} resizeMode="contain" />
+                <Image
+                  source={IMAGES.buttonDaftar}
+                  style={styles.btnMasuk}
+                  resizeMode="contain"
+                />
               </TouchableOpacity>
               <Text style={styles.punyaAkun}>
                 Sudah punya akun?
@@ -152,5 +177,5 @@ export default class Component extends React.Component {
 }
 
 Component.propTypes = {
-  navigation: PropTypes.object.isRequired
+  navigation: PropTypes.object.isRequired,
 };
