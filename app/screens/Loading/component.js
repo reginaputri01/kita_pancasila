@@ -24,13 +24,13 @@ export default class Component extends React.Component {
 
   render() {
     return (
-        <View style={styles.mainContainer}>
-          <StatusBar hidden />
-          <View>
-            <PacmanIndicator color='#000'/>
-          </View>
-          <View style={styles.text}>
-            <Text>sabar yaa, soal dan jawabannya lagi diproses:)</Text>
+      <View style={styles.mainContainer}>
+        <StatusBar hidden />
+        <View>
+          <PacmanIndicator color='#000'/>
+        </View>
+        <View style={styles.text}>
+          <Text>Pastikan koneksi internet kalian lancar yaa..</Text>
         </View>
       </View>
     );

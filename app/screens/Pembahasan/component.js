@@ -231,9 +231,6 @@ export default class Component extends React.Component {
               <View style={styles.viewNoSoal}>
                 <Text style={styles.noSoal}>{this.state.index + 1}/10</Text>
               </View>
-              <View style={styles.viewPoin}>
-                <Text style={styles.poin}>Poin: {this.state.points}/1</Text>
-              </View>
             </View>
 
             <View style={styles.viewSoal}>
@@ -286,12 +283,6 @@ export default class Component extends React.Component {
             </View>
 
             <Text>{this.state.keterangan}</Text>
-
-            <Image
-              source={IMAGES.garis}
-              style={styles.garis}
-              resizeMode="contain"
-            />
 
             {this.navigate()}
             
