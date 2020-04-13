@@ -34,7 +34,7 @@ const styles = StyleSheet.create({
   },
   contentContainer: {
     flexDirection: 'row', 
-    justifyContent: 'space-between'
+    justifyContent: 'space-between',
   },
   viewNoSoal: {
     width: scale(70), 
@@ -101,9 +101,8 @@ const styles = StyleSheet.create({
   },
   textJawaban: {
     ...FONT_TEXT_PRIMARY,
-    margin: scale(15),
     fontSize: 15,
-    color: '#515151',
+    color: 'white',
     alignItems: 'center'
   },
   textJawabanPressed: {
@@ -204,7 +203,7 @@ const styles = StyleSheet.create({
     width: scale(320),
     height: scale(60),
     borderWidth: 1,
-    borderColor: '#A3A3A3',
+    borderColor: 'blue',
     marginTop: scale(15),
     marginRight: scale(20),
     marginLeft: scale(20),

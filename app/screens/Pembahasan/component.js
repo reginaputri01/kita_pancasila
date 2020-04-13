@@ -9,7 +9,8 @@ import {
   SafeAreaView,
   ScrollView,
   AsyncStorage,
-  StatusBar
+  StatusBar,
+  Dimensions,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import firebase from 'firebase';
@@ -17,22 +18,27 @@ import styles from './styles';
 import IMAGES from '../../configs/images';
 import MainScreen from '../../components/layouts/MainScreen';
 
+let arrUrutan;
+let arrAns = [{text: '', correct: false}];
+
 export default class Component extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       index: 0,
-      points: 0,
-      correct: [],
-      answerSaved: [],
-      answers1: '',
-      answers2: '',
-      answers3: '',
-      answers0: '',
-      question: '',
-      pemabahasan: '',
-      urutan: [],
-      keterangan: ''
+      pmbhsItems: [
+        {
+          question: '',
+          answers: [
+            {
+              text: '',
+              correct: false,
+            },
+          ],
+          pembahasan: '',
+        },
+      ],
+      onNowAns: '',
     };
   }
 
@@ -40,100 +46,104 @@ export default class Component extends React.Component {
     this.props.navigation.navigate('FinishLatihanSoal');
   };
 
-  getData = async () => {
+  async componentDidMount() {
+    const {pmbhsItems} = this.state;
     const username = await AsyncStorage.getItem('username');
-    const urutan = this.state.urutan.splice();
-
-    for (let indexUrutan = 0; indexUrutan < 10; indexUrutan++) {
-      firebase
-      .database()
-      .ref(`users/${username}/urutan/${indexUrutan}`)
-      .on('value', snap => urutan[indexUrutan] = snap.val());
-    }
-
-    this.setState({urutan: urutan});
+    let arrPmbhs = pmbhsItems.splice();
 
     firebase
       .database()
-      .ref(`latihan_soal_items/${this.state.urutan[this.state.index]}/correct`)
-      .on('value', snap => this.setState({correct: snap.val()}));
+      .ref(`users/${username}/urutan`)
+      .on('value', snap => {
+        arrUrutan = snap.val();
+      });
 
-    const answerSaved = this.state.answerSaved.splice();
+    firebase
+      .database()
+      .ref(`users/${username}/saved_answer`)
+      .on('value', snap => {
+        arrAns = snap.val();
+      });
 
-    for (let indexAns = 0; indexAns < 10; indexAns++) {
+    for (let indexUr = 0; indexUr < 10; indexUr++) {
+      let data = {
+        answers: [],
+      };
+
       firebase
         .database()
-        .ref(`users/${username}/answers/${indexAns}`)
-        .on('value', snap => (answerSaved[indexAns] = snap.val()));
+        .ref(`latihan_items/latihan${arrUrutan[indexUr]}/question`)
+        .on('value', snap => {
+          data.question = snap.val();
+        });
+
+      for (let indexAns = 0; indexAns < 4; indexAns++) {
+        firebase
+          .database()
+          .ref(
+            `latihan_items/latihan${
+              arrUrutan[indexUr]
+            }/answers/answer${indexAns}`,
+          )
+          .on('value', snap => {
+            data.answers.push(snap.val());
+          });
+      }
+
+      firebase
+        .database()
+        .ref(`latihan_items/latihan${arrUrutan[indexUr]}/pembahasan`)
+        .on('value', snap => {
+          data.pembahasan = snap.val();
+        });
+
+      arrPmbhs[indexUr] = data;
     }
 
-    this.setState({answerSaved: answerSaved});
-
-    firebase
-      .database()
-      .ref(`latihan_soal_items/${this.state.urutan[this.state.index]}/answers/answer1/text`)
-      .on('value', snap => this.setState({answers1: snap.val()}));
-
-    firebase
-      .database()
-      .ref(`latihan_soal_items/${this.state.urutan[this.state.index]}/answers/answer2/text`)
-      .on('value', snap => this.setState({answers2: snap.val()}));
-    
-    firebase
-      .database()
-      .ref(`latihan_soal_items/${this.state.urutan[this.state.index]}/answers/answer3/text`)
-      .on('value', snap => this.setState({answers3: snap.val()}));
-    
-    firebase
-      .database()
-      .ref(`latihan_soal_items/${this.state.urutan[this.state.index]}/answers/answer0/text`)
-      .on('value', snap => this.setState({answers0: snap.val()}));
-
-    firebase
-      .database()
-      .ref(`latihan_soal_items/${this.state.urutan[this.state.index]}/question`)
-      .on('value', snap => this.setState({question: snap.val()}));
-
-    firebase
-      .database()
-      .ref(`latihan_soal_items/${this.state.urutan[this.state.index]}/pembahasan`)
-      .on('value', snap => this.setState({pemabahasan: snap.val()}));
-  };
-
-  pressNext = () => {
-    this.setState({index: this.state.index + 1}, () => {
-      this.getData();
-    });
-  };
-
-  pressPrevious = () => {
-    this.setState({index: this.state.index - 1}, () => {
-      this.getData();
-    });
-  };
+    this.setState({pmbhsItems: arrPmbhs});
+  }
 
   pressFinish = async () => {
     this.props.navigation.navigate('FinishLatihanSoal');
+  };
+
+  pressNext = () => {
+    const {index} = this.state;
+    this.setState({index: index + 1});
+  };
+
+  pressPrevious = () => {
+    const {index} = this.state;
+    this.setState({index: index - 1});
   };
 
   navigate() {
     const index = this.state.index + 1;
     if (index == 1) {
       return (
-        <View>
+        <View
+          style={{
+            marginStart: 20,
+          }}>
           <TouchableOpacity onPress={this.pressNext}>
             <Image
               source={IMAGES.next}
               resizeMode="contain"
-              style={styles.btnNext2}
+              style={styles.btnNext}
             />
           </TouchableOpacity>
         </View>
       );
-    } else if (index < 10) {
+    } else if (index <= 9) {
       return (
-        <View style={styles.nextPrevious}>
-          <View>
+        <View
+          style={{
+            flexDirection: 'row',
+          }}>
+          <View
+            style={{
+              marginStart: 20,
+            }}>
             <TouchableOpacity onPress={this.pressPrevious}>
               <Image
                 source={IMAGES.previous}
@@ -142,7 +152,10 @@ export default class Component extends React.Component {
               />
             </TouchableOpacity>
           </View>
-          <View>
+          <View
+            style={{
+              flexDirection: 'column',
+            }}>
             <TouchableOpacity onPress={this.pressNext}>
               <Image
                 source={IMAGES.next}
@@ -155,17 +168,24 @@ export default class Component extends React.Component {
       );
     } else if (index == 10) {
       return (
-        <View style={styles.nextPrevious}>
-          <View>
-            <TouchableOpacity onPress={this.pressPrevious}>
-              <Image
-                source={IMAGES.previous}
-                resizeMode="contain"
-                style={styles.btnPrevious2}
-              />
-            </TouchableOpacity>
-          </View>
-          <View>
+        <View
+          style={{
+            flexDirection: 'row',
+            marginStart: 20,
+          }}>
+          <TouchableOpacity onPress={this.pressPrevious}>
+            <Image
+              source={IMAGES.previous}
+              resizeMode="contain"
+              style={styles.btnPrevious2}
+            />
+          </TouchableOpacity>
+          <View
+            style={{
+              flexDirection: 'column',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
             <TouchableOpacity onPress={this.pressFinish}>
               <Image
                 source={IMAGES.buttonSelesai}
@@ -179,35 +199,13 @@ export default class Component extends React.Component {
     }
   }
 
-  checkNullAnswer = () => {
-    console.log(this.state.answerSaved[0]);
-  }
-
-  checkAnswer = (data) => {
-    if (data == this.state.answerSaved[this.state.index]) {
-      if (data != this.state.correct) {
-        return styles.jawabanContainerSalah
-      } else {
-        return styles.jawabanContainerBener
-      }
-    } else {
-      if (data == this.state.correct) {
-        return styles.jawabanContainerBener
-      } else {
-        return styles.jawabanContainer
-      }
-    }
-  }
-
-  componentDidMount() {
-    this.getData();
-    this.checkNullAnswer();
-  }
-
   render() {
+    const {pmbhsItems, index} = this.state;
+
     return (
-        <MainScreen style={styles.mainContainer}>
-          <StatusBar hidden />
+      <MainScreen style={styles.mainContainer}>
+        <StatusBar hidden />
+        <View>
           <View style={styles.header}>
             <View style={styles.container}>
               <TouchableOpacity
@@ -226,69 +224,79 @@ export default class Component extends React.Component {
           </View>
 
           <ScrollView>
-          <View>
-            <View style={styles.contentContainer}>
-              <View style={styles.viewNoSoal}>
-                <Text style={styles.noSoal}>{this.state.index + 1}/10</Text>
+            <View>
+              <View 
+                style={{
+                  flexDirection: "row"
+                }}
+              >
+                <View style={styles.contentContainer}>
+                  <View style={styles.viewNoSoal}>
+                    <Text style={styles.noSoal}>{this.state.index + 1}/10</Text>
+                  </View>
+                </View>
+                <View>
+                  <View style={{
+                    ...styles.viewNoSoal, 
+                    backgroundColor: !arrAns[index].correct
+                      ? 'red'
+                      : 'green'
+                    }}>
+                    <Text style={{...styles.noSoal, color: 'white'}}>
+                      {
+                        !arrAns[index].correct
+                          ? 'SALAH'
+                          : 'BENAR'
+                      }
+                    </Text>
+                  </View>
+                </View>
+              </View>
+
+              <View style={styles.viewSoal}>
+                <Text style={styles.soal}>{pmbhsItems[index].question}</Text>
+              </View>
+
+              {pmbhsItems[index].answers.map(data => (
+                <View>
+                  <TouchableOpacity
+                    style={
+                      data.text == arrAns[index].text
+                        ? !arrAns[index].correct
+                          ? styles.jawabanContainerSalah
+                          : styles.jawabanContainerBener
+                        : !data.correct
+                        ? styles.jawabanContainer
+                        : styles.jawabanContainerBener
+                    }
+                    disabled={true}>
+                    <Text
+                      style={
+                        data.text == arrAns[index].text
+                          ? !arrAns[index].correct
+                            ? styles.textJawaban
+                            : styles.textJawaban
+                          : !data.correct
+                          ? {...styles.textJawaban, color: 'black'}
+                          : styles.textJawaban
+                      }>
+                      {data.text}
+                    </Text>
+                  </TouchableOpacity>
+                </View>
+              ))}
+
+              <Text style={styles.titlePembahasan}>Pembahasan: </Text>
+              <View style={styles.viewPembahasan}>
+                <Text style={styles.pembahasan}>
+                  {pmbhsItems[index].pembahasan}
+                </Text>
               </View>
             </View>
-
-            <View style={styles.viewSoal}>
-              <Text style={styles.soal}>{this.state.question}</Text>
-            </View>
-
-            <View>
-              <TouchableOpacity disabled={true}>
-                <View
-                  style={this.checkAnswer(this.state.answers1)}
-                >
-                  <Text>{this.state.answers1}</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-
-            <View>
-              <TouchableOpacity disabled={true}>
-                <View
-                  style={this.checkAnswer(this.state.answers0)}
-                >
-                  <Text>{this.state.answers0}</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-
-            <View>
-              <TouchableOpacity disabled={true}>
-                <View
-                  style={this.checkAnswer(this.state.answers2)}
-                >
-                  <Text>{this.state.answers2}</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-
-            <View>
-              <TouchableOpacity disabled={true}>
-                <View
-                  style={this.checkAnswer(this.state.answers3)}
-                >
-                  <Text>{this.state.answers3}</Text>
-                </View>
-              </TouchableOpacity>
-            </View>
-
-            <Text style={styles.titlePembahasan}>Pembahasan: </Text>
-            <View style={styles.viewPembahasan}>
-              <Text style={styles.pembahasan}>{this.state.pemabahasan}</Text>
-            </View>
-
-            <Text>{this.state.keterangan}</Text>
-
-            {this.navigate()}
-            
-          </View>
+            <View>{this.navigate()}</View>
           </ScrollView>
-        </MainScreen>
+        </View>
+      </MainScreen>
     );
   }
 }
