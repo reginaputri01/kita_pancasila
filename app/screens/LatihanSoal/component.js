@@ -11,34 +11,67 @@ import {
   SafeAreaView,
   AsyncStorage,
   Alert,
-  StatusBar
+  Dimensions,
+  StatusBar,
 } from 'react-native';
 import PropTypes from 'prop-types';
 import firebase from 'firebase';
 import styles from './styles';
 import IMAGES from '../../configs/images';
 
-const a = [];
-const b = [];
+let arr = [
+  {
+    text: '',
+    correct: false,
+  },
+];
+
+let forAns = [];
 
 export default class Component extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       index: 0,
-      question: '',
-      answers: [],
+      latihanItems: [
+        {
+          question: '',
+          answers: [
+            {
+              text: '',
+              correct: false,
+            },
+          ],
+        },
+      ],
       indexAnswer: this.shuffle([0, 1, 2, 3]),
-      indexLatihan: this.shuffle([0, 1, 2, 3, 4, 5, 6, 7, 8, 9]),
-      answerSaved: a,
+      indexLatihan: this.shuffle([
+        0,
+        1,
+        2,
+        3,
+        4,
+        5,
+        6,
+        7,
+        8,
+        9,
+        10,
+        11,
+        12,
+        13,
+        14,
+        15,
+        16,
+      ]),
       onIndexAnswer: '',
-      correct: [],
       points: 0,
-      urutanQuizSaved: b
+      savedAnswer: arr,
+      onStateAns: ''
     };
   }
 
-  shuffle(array) {
+  shuffle = (array) => {
     var currentIndex = array.length,
       temporaryValue,
       randomIndex;
@@ -53,80 +86,19 @@ export default class Component extends React.Component {
     }
 
     return array;
-  }
-
-  getData = () => {
-    firebase
-      .database()
-      .ref(
-        `latihan_soal_items/latihan_soal${
-          this.state.indexLatihan[this.state.index]
-        }/question`,
-      )
-      .on('value', snap => this.setState({question: snap.val()}));
-
-    const array = this.state.answers.splice();
-
-    for (
-      let indexAns = 0;
-      indexAns < this.state.indexAnswer.length;
-      indexAns++
-    ) {
-      firebase
-        .database()
-        .ref(
-          `latihan_soal_items/latihan_soal${
-            this.state.indexLatihan[this.state.index]
-          }/answers/answer${
-            this.state.indexAnswer[this.state.indexAnswer[indexAns]]
-          }/text`,
-        )
-        .on('value', snap => array.push(snap.val()));
-    }
-
-    this.setState({answers: array});
-
-    const correct = this.state.correct.splice();
-
-    for (let indexes = 0; indexes < this.state.indexLatihan.length; indexes++) {
-      firebase
-        .database()
-        .ref(
-          `latihan_soal_items/latihan_soal${this.state.indexLatihan[indexes]}/correct`,
-        )
-        .on('value', snap => (correct[indexes] = snap.val()));
-    }
-
-    this.setState({correct: correct});
-  };
-
-  checkAnswer = () => {
-    let dapet = 0;
-
-    for (
-      let checkIndex = 0;
-      checkIndex < this.state.indexLatihan.length;
-      checkIndex++
-    ) {
-      this.state.correct[checkIndex] == this.state.answerSaved[checkIndex]
-        ? dapet++
-        : false;
-    }
-
-    this.setState({points: dapet});
   };
 
   pressNext = () => {
-    this.setState({index: this.state.index + 1}, () => {
-      this.getData();
-      this.setState({onIndexAnswer: a[this.state.index]});
+    const {index} = this.state;
+    this.setState({index: index + 1}, () => {
+      this.setState({onStateAns: forAns[index+1]})
     });
   };
 
   pressPrevious = () => {
-    this.setState({index: this.state.index - 1}, () => {
-      this.getData();
-      this.setState({onIndexAnswer: a[this.state.index]});
+    const {index} = this.state;
+    this.setState({index: index - 1}, () => {
+      this.setState({onStateAns: forAns[index-1]})
     });
   };
 
@@ -140,26 +112,29 @@ export default class Component extends React.Component {
         },
         {
           text: 'Keluar',
-          onPress: () => this.props.navigation.navigate('Kuis')
+          onPress: () => this.props.navigation.navigate('Kuis'),
         },
       ],
     );
   };
 
   pressFinish = async () => {
-    this.checkAnswer();
+    const {savedAnswer} = this.state;
+    let points = 0
+
+    savedAnswer.map(data => {
+      data.correct
+        ? points++
+        : false
+    });
 
     const username = await AsyncStorage.getItem('username');
 
-    firebase
-      .database()
-      .ref()
-      .child(`users/${username}`)
-      .set({
-        points: this.state.points,
-        answers: this.state.answerSaved,
-        urutan: this.state.urutanQuizSaved
-      });
+    firebase.database().ref().child(`users/${username}`).set({
+      urutan: this.state.indexLatihan,
+      points: points,
+      saved_answer: arr
+    });
 
     this.props.navigation.navigate('FinishLatihanSoal');
   };
@@ -173,47 +148,49 @@ export default class Component extends React.Component {
             <Image
               source={IMAGES.next}
               resizeMode="contain"
-              style={styles.btnNext2}
+              style={styles.btnNext}
             />
           </TouchableOpacity>
         </View>
       );
-    } else if (index < this.state.indexLatihan.length) {
+    } else if (index <= 9) {
       return (
-        <View style={styles.nextPrevious}>
-          <View>
-            <TouchableOpacity onPress={this.pressPrevious}>
-              <Image
-                source={IMAGES.previous}
-                resizeMode="contain"
-                style={styles.btnPrevious}
-              />
-            </TouchableOpacity>
-          </View>
-          <View>
-            <TouchableOpacity onPress={this.pressNext}>
-              <Image
-                source={IMAGES.next}
-                resizeMode="contain"
-                style={styles.btnNext}
-              />
-            </TouchableOpacity>
-          </View>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+          }}>
+          <TouchableOpacity onPress={this.pressPrevious}>
+            <Image
+              source={IMAGES.previous}
+              resizeMode="contain"
+              style={styles.btnPrevious}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={this.pressNext}>
+            <Image
+              source={IMAGES.next}
+              resizeMode="contain"
+              style={styles.btnNext}
+            />
+          </TouchableOpacity>
         </View>
       );
-    } else if (index == this.state.indexLatihan.length) {
+    } else if (index == 10) {
       return (
-        <View style={styles.nextPrevious}>
-          <View>
-            <TouchableOpacity onPress={this.pressPrevious}>
-              <Image
-                source={IMAGES.previous}
-                resizeMode="contain"
-                style={styles.btnPrevious2}
-              />
-            </TouchableOpacity>
-          </View>
-          <View>
+        <View
+          style={{
+            flex: 1,
+            flexDirection: 'row',
+          }}>
+          <TouchableOpacity onPress={this.pressPrevious}>
+            <Image
+              source={IMAGES.previous}
+              resizeMode="contain"
+              style={styles.btnPrevious2}
+            />
+          </TouchableOpacity>
+          <View style={{flex: 1, alignItems: 'center'}}>
             <TouchableOpacity onPress={this.pressFinish}>
               <Image
                 source={IMAGES.buttonSelesai}
@@ -228,64 +205,128 @@ export default class Component extends React.Component {
   }
 
   answerPressed = data => {
-    a[this.state.index] = data;
-    this.setState({onIndexAnswer: a[this.state.index]});
-    b[this.state.index] = `latihan_soal${this.state.indexLatihan[this.state.index]}`;
+    const {index} = this.state;
+
+    if (arr.length == index) {
+      if (index == 0) {
+        arr[index] = data;
+      } else if (arr[index] != null) {
+        arr[index] = data;
+      } else {
+        arr.push(data);
+      }
+    } else {
+      arr.splice(index, 1, data);
+    }
+
+    this.setState({onStateAns: data.text});
+    forAns[index] = data.text;
   };
 
-  componentDidMount() {
-    this.getData();
-  };
+  async componentDidMount() {
+    const {indexLatihan, latihanItems, indexAnswer, index} = this.state;
+    const arrLatihanItems = latihanItems.splice();
+    const username = await AsyncStorage.getItem('username');
+
+    firebase.database().ref().child(`users/${username}`).set({
+      urutan: null,
+      points: null,
+      saved_answer: null
+    });
+
+    for (let indexLat = 0; indexLat < 10; indexLat++) {
+      let data = {
+        answers: [],
+      };
+
+      firebase
+        .database()
+        .ref(`latihan_items/latihan${indexLatihan[indexLat]}/question`)
+        .on('value', (snap) => {
+          data.question = snap.val();
+        });
+
+      firebase
+        .database()
+        .ref(`latihan_items/latihan${indexLatihan[indexLat]}/pembahasan`)
+        .on('value', (snap) => {
+          data.pembahasan = snap.val();
+        });
+
+      for (let indexAns = 0; indexAns < 4; indexAns++) {
+        firebase
+          .database()
+          .ref(
+            `latihan_items/latihan${indexLatihan[indexLat]}` +
+              `/answers/answer${indexAnswer[indexAns]}`,
+          )
+          .on('value', (snap) => {
+            data.answers.push(snap.val());
+          });
+      }
+
+      arrLatihanItems[indexLat] = data;
+    }
+
+    this.setState({latihanItems: arrLatihanItems});
+  }
 
   render() {
+    const {latihanItems, index, onStateAns} = this.state;
+    const {height, width} = Dimensions.get('window');
+
     return (
-      <View style={styles.mainContainer}>
+      <SafeAreaView style={styles.mainContainer}>
         <StatusBar hidden />
-        <SafeAreaView>
-          <ScrollView>
-            <View style={styles.headerContainer}>
-              <View style={styles.viewNoSoal}>
-                <Text style={styles.noSoal}>
-                  {this.state.index + 1}/{this.state.indexLatihan.length}
-                </Text>
-              </View>
-              <View style={styles.exitKuis}>
-                <TouchableOpacity onPress={this.pressExit}>
-                  <Text style={styles.textExit}>KELUAR</Text>
-                </TouchableOpacity>
-              </View>
+        <ScrollView>
+          <View style={styles.headerContainer}>
+            <View style={styles.viewNoSoal}>
+              <Text style={styles.noSoal}>{this.state.index + 1}/10</Text>
             </View>
-
-            <View style={styles.soalContainer}>
-              <Text style={styles.textSoal}>{this.state.question}</Text>
+            <View style={styles.exitKuis}>
+              <TouchableOpacity onPress={this.pressExit}>
+                <Text style={styles.textExit}>KELUAR</Text>
+              </TouchableOpacity>
             </View>
+          </View>
 
-            {this.state.answers.map(data => (
-              <View>
-                <TouchableOpacity onPress={() => this.answerPressed(data)}>
-                  <View
+          <View style={styles.soalContainer}>
+            <Text style={styles.textSoal}>{latihanItems[index].question}</Text>
+          </View>
+
+          {latihanItems[index].answers.map((data) => (
+            <View>
+              <TouchableOpacity 
+                onPress={() => this.answerPressed(data)}
+                disabled={data.text==onStateAns ? true : false}
+              >
+                <View
+                  style={
+                    onStateAns == data.text
+                      ? styles.jawabanPressedContainer
+                      : styles.jawabanContainer
+                  }>
+                  <Text
                     style={
-                      this.state.onIndexAnswer != data
-                        ? styles.jawabanContainer
-                        : styles.jawabanPressedContainer
+                      onStateAns == data.text
+                        ? styles.textJawabanPressed
+                        : styles.textJawaban
                     }>
-                    <Text
-                      style={
-                        this.state.onIndexAnswer != data
-                          ? styles.textJawaban
-                          : styles.textJawabanPressed
-                      }>
-                      {data}
-                    </Text>
-                  </View>
-                </TouchableOpacity>
-              </View>
-            ))}
+                    {data.text}
+                  </Text>
+                </View>
+              </TouchableOpacity>
+            </View>
+          ))}
+        </ScrollView>
 
-            <View style={styles.nextPrevious}>{this.navigate()}</View>
-          </ScrollView>
-        </SafeAreaView>
-      </View>
+        <View
+          style={{
+            height: height / 5,
+          }}>
+          {this.navigate()}
+        </View>
+      </SafeAreaView>
     );
   }
 }

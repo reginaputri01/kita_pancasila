@@ -17,7 +17,7 @@ const styles = StyleSheet.create({
     height: scale(40),
     backgroundColor: '#AEE7F9',
     margin: scale(15),
-    borderRadius: 5
+    borderRadius: scale(5)
   },
   noSoal: {
     ...FONT_BOLD_PRIMARY,
@@ -32,7 +32,7 @@ const styles = StyleSheet.create({
     borderColor: '#E8495C',
     borderWidth: 2,
     margin: scale(15),
-    borderRadius: 5
+    borderRadius: scale(5)
   },
   textExit: {
     ...FONT_BOLD_PRIMARY,
@@ -47,8 +47,8 @@ const styles = StyleSheet.create({
   },
   textSoal: {
     ...FONT_TEXT_PRIMARY,
-    marginTop: scale(15),
-    marginBottom: scale(10),
+    marginTop: scale(10),
+    marginBottom: scale(15),
     fontSize: 16,
     lineHeight: 25,
     color: '#515151'
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     marginTop: scale(20),
     marginRight: scale(20),
     marginLeft: scale(20),
-    borderRadius: 5,
+    borderRadius: scale(5),
     justifyContent: 'center'
   },
   textJawaban: {
@@ -87,7 +87,7 @@ const styles = StyleSheet.create({
     marginTop: scale(20),
     marginRight: scale(20),
     marginLeft: scale(20),
-    borderRadius: 5,
+    borderRadius: scale(5),
     justifyContent: 'center'
   },
   nextPrevious: {

@@ -116,7 +116,8 @@ export default class Component extends React.Component {
               </View>
               <TextInput
                 underlineColorAndroid="transparent"
-                style={styles.textEmail}
+                style={styles.textInput}
+                placeholderTextColor="rgba(0,0,0,0.5)"
                 placeholder="Email"
                 editable
                 isRequired
@@ -126,7 +127,8 @@ export default class Component extends React.Component {
               />
               <TextInput
                 underlineColorAndroid="transparent"
-                style={styles.textSandi}
+                style={styles.textInput}
+                placeholderTextColor="rgba(0,0,0,0.5)"
                 placeholder="Kata sandi"
                 editable
                 isRequired

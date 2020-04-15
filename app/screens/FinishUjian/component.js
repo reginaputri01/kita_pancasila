@@ -10,8 +10,10 @@ import {
   ImageBackground,
   SafeAreaView,
   ScrollView,
+  AsyncStorage,
   StatusBar
 } from 'react-native';
+import firebase from 'firebase';
 import styles from './styles';
 import PropTypes from 'prop-types';
 import IMAGES from '../../configs/images';
@@ -28,10 +30,6 @@ export default class Component extends React.Component {
     this.props.navigation.navigate('Kuis');
   };
 
-  pressPembahasan = () => {
-    this.props.navigation.navigate('Pembahasan');
-  };
-
   getPoints = async () => {
     const username = await AsyncStorage.getItem('username');
 
@@ -44,7 +42,6 @@ export default class Component extends React.Component {
   componentDidMount() {
     this.getPoints();
   };
-
   render() {
     return (
       <ImageBackground source={IMAGES.background2} style={styles.background}>
@@ -52,7 +49,7 @@ export default class Component extends React.Component {
         <SafeAreaView>
           <ScrollView>
             <View style={styles.mainContainer}>
-              <Text style={styles.text}>SELAMAT UJIAN SELESAI !</Text>
+              <Text style={styles.text}>UJIAN SELESAI !</Text>
               <Image
                 source={IMAGES.piala}
                 resizeMode="contain"
@@ -61,7 +58,7 @@ export default class Component extends React.Component {
               <Text style={styles.titleSkor}>Skor :</Text>
 
               <View style={styles.skorContainer}>
-                <Text style={styles.skor}>{this.state.points * 6.67}/100</Text>
+                <Text style={styles.skor}>{Math.ceil(this.state.points/3*20)}/100</Text>
               </View>
 
               <TouchableOpacity onPress={this.pressTutup}>
