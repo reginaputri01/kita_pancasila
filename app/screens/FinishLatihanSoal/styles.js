@@ -15,7 +15,7 @@ const styles = StyleSheet.create({
   text: {
     ...FONT_BOLD_PRIMARY,
     color: '#fff',
-    fontSize: 24,
+    fontSize: scale(24),
   },
   piala: {
     width: scale(180),
@@ -26,7 +26,7 @@ const styles = StyleSheet.create({
   titleSkor: {
     ...FONT_BOLD_PRIMARY,
     color: '#fff',
-    fontSize: 22,
+    fontSize: scale(22),
   },
   skorContainer: {
     width: scale(90),
@@ -39,7 +39,7 @@ const styles = StyleSheet.create({
     ...FONT_BOLD_PRIMARY,
     textAlign: 'center',
     marginTop: scale(5),
-    fontSize: 26,
+    fontSize: scale(26),
     color: '#165C84'
   },
   pembahasan: {
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
   textPembahasan: {
     ...FONT_TEXT_PRIMARY,
     textAlign: 'center',
-    fontSize: 15,
+    fontSize: scale(15),
     color: '#fff'
   },
   btnTutupKuis: {

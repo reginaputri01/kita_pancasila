@@ -37,7 +37,7 @@ const styles = StyleSheet.create({
   },
   titleHeader: {
     ...FONT_BOLD_PRIMARY,
-    fontSize: 25,
+    fontSize: scale(25),
     color: '#000',
   },
   profileContainer: {
@@ -56,13 +56,13 @@ const styles = StyleSheet.create({
   profileName: {
     ...FONT_BOLD_PRIMARY,
     marginTop: scale(20),
-    fontSize: 19,
+    fontSize: scale(19),
     color: '#000'
   },
   profileEmail: {
     ...FONT_TEXT_PRIMARY,
     marginTop: scale(5),
-    fontSize: 15,
+    fontSize: scale(15),
     color: '#88898C'
   },
   garis: {

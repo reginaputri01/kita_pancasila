@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   title: {
     ...FONT_HEADLINE5_PRIMARY,
-    fontSize: 25,
+    fontSize: scale(25),
     color: COLOR_BLACK
   },
   content: {
@@ -37,9 +37,12 @@ const styles = StyleSheet.create({
     marginTop: scale(5)
   },
   btnBab: {
-    width: scale(850),
+    width: scale(320),
     height: scale(80),
-    margin: scale(10)
+    marginTop: scale(5),
+    marginBottom: scale(15),
+    marginRight: scale(20),
+    marginLeft: scale(20)
   }
 });
 

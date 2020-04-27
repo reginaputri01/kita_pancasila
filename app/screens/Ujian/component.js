@@ -140,7 +140,7 @@ export default class Component extends React.Component {
             <Image
               source={IMAGES.next}
               resizeMode="contain"
-              style={styles.btnNext}
+              style={styles.btnNext2}
             />
           </TouchableOpacity>
         </View>
