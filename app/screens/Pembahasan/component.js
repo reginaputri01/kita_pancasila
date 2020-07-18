@@ -129,7 +129,7 @@ export default class Component extends React.Component {
             <Image
               source={IMAGES.next}
               resizeMode="contain"
-              style={styles.btnNext}
+              style={styles.btnNext2}
             />
           </TouchableOpacity>
         </View>
@@ -222,6 +222,7 @@ export default class Component extends React.Component {
               <Text style={styles.titleHeader}>PEMBAHASAN</Text>
             </View>
           </View>
+        </View>
 
           <ScrollView>
             <View>
@@ -292,10 +293,9 @@ export default class Component extends React.Component {
                   {pmbhsItems[index].pembahasan}
                 </Text>
               </View>
-            </View>
-            <View>{this.navigate()}</View>
+            </View>  
           </ScrollView>
-        </View>
+          <View>{this.navigate()}</View>
       </MainScreen>
     );
   }

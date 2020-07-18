@@ -24,7 +24,7 @@ const styles = StyleSheet.create({
   text: {
     textAlign: 'center',
     color: '#88898C',
-    fontSize: 12
+    fontSize: scale(12)
   },
   footerContainer: {
     alignItems: 'center'

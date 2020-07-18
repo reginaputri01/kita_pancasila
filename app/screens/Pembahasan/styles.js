@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
   },
   titleHeader: {
     ...FONT_BOLD_PRIMARY,
-    fontSize: 25,
+    fontSize: scale(25),
     color: '#000',
   },
   contentContainer: {
@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
     ...FONT_BOLD_PRIMARY,
     textAlign: 'center', 
     marginTop: scale(7), 
-    fontSize: 20,
+    fontSize: scale(20),
   },
   viewPoin: {
     width: scale(100), 
@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     ...FONT_TEXT_PRIMARY,
     textAlign: 'center', 
     marginTop: scale(20), 
-    fontSize: 17, 
+    fontSize: scale(17), 
     color: 'red'
   },
   viewSoal: {
@@ -69,17 +69,17 @@ const styles = StyleSheet.create({
   },
   soal: {
     ...FONT_TEXT_PRIMARY,
-    marginTop: scale(10), 
-    fontSize: 16, 
+    marginTop: scale(5), 
+    fontSize: scale(16), 
     lineHeight: 25, 
     color: '#515151'
   },
   viewJawaban: {
-    width: scale(320),
+    width: scale(310),
     height: scale(60),
     borderWidth: 1,
     borderColor: '#A3A3A3',
-    marginTop: scale(15),
+    marginTop: scale(10),
     marginRight: scale(20),
     marginLeft: scale(20),
     borderRadius: 5,
@@ -88,14 +88,14 @@ const styles = StyleSheet.create({
   jawaban: {
     ...FONT_TEXT_PRIMARY,
     margin: scale(15), 
-    fontSize: 15, 
+    fontSize: scale(15), 
     color: '#515151', 
     alignItems: 'center'
   },
   konfirmasiJawaban: {
     ...FONT_TEXT_PRIMARY,
     margin: scale(15), 
-    fontSize: 15, 
+    fontSize: scale(15), 
     color: '#fff', 
     alignItems: 'center'
   },
@@ -108,15 +108,15 @@ const styles = StyleSheet.create({
   textJawabanPressed: {
     ...FONT_TEXT_PRIMARY,
     margin: scale(15), 
-    fontSize: 15, 
+    fontSize: scale(15), 
     color: '#fff', 
     alignItems: 'center'
   },
   jawabanContainerBener: {
-    width: scale(320),
+    width: scale(310),
     height: scale(60),
     backgroundColor: 'green',
-    marginTop: scale(15),
+    marginTop: scale(10),
     marginRight: scale(20),
     marginLeft: scale(20),
     padding: scale(10),
@@ -124,10 +124,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   jawabanContainerSalah: {
-    width: scale(320),
+    width: scale(310),
     height: scale(60),
     backgroundColor: 'red',
-    marginTop: scale(15),
+    marginTop: scale(10),
     marginRight: scale(20),
     marginLeft: scale(20),
     padding: scale(10),
@@ -135,19 +135,19 @@ const styles = StyleSheet.create({
     justifyContent: 'center'
   },
   viewJawabanBener: {
-    width: scale(320),
+    width: scale(310),
     height: scale(60),
     backgroundColor: '#3ECD77',
-    marginTop: scale(15),
+    marginTop: scale(10),
     marginRight: scale(20),
     marginLeft: scale(20),
     borderRadius: 5
   },
   viewJawabanSalah: {
-    width: scale(320),
+    width: scale(310),
     height: scale(60),
     backgroundColor: '#F26565',
-    marginTop: scale(15),
+    marginTop: scale(10),
     marginRight: scale(20),
     marginLeft: scale(20),
     borderRadius: 5,
@@ -157,7 +157,7 @@ const styles = StyleSheet.create({
     ...FONT_BOLD_PRIMARY,
     marginLeft: scale(30), 
     marginTop: scale(20),
-    fontSize: 16
+    fontSize: scale(16)
   },
   viewPembahasan: {
     backgroundColor: '#FAFAFA', 
@@ -170,41 +170,51 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     paddingRight: scale(30),
-    paddingLeft: scale(30)
+    paddingLeft: scale(30),
+    marginTop: scale(20)
   },
   btnNext: {
     width: scale(30),
     height: scale(50),
-    marginBottom: scale(20)
+    marginLeft: scale(50),
+    marginTop: scale(20),
+    marginBottom: scale(40)
   },
   btnNext2: {
     width: scale(30),
     height: scale(50),
     marginLeft: '82%',
+    marginTop: scale(20),
     marginBottom: scale(20)
   },
   btnPrevious: {
     width: scale(30),
     height: scale(50),
+    marginLeft: scale(20),
+    marginRight: '50%',
+    marginTop: scale(20),
     marginBottom: scale(20)
   },
   btnPrevious2: {
     width: scale(30),
     height: scale(50),
+    marginLeft: scale(20),
+    marginRight: scale(30),
     marginBottom: scale(20)
   },
   btnSelesai: {
     width: scale(150),
     height: scale(50),
+    marginLeft: scale(40),
     marginRight: scale(80),
     marginBottom: scale(20)
   },
   jawabanContainer: {
-    width: scale(320),
+    width: scale(310),
     height: scale(60),
     borderWidth: 1,
     borderColor: 'blue',
-    marginTop: scale(15),
+    marginTop: scale(10),
     marginRight: scale(20),
     marginLeft: scale(20),
     padding: scale(10),
@@ -213,7 +223,7 @@ const styles = StyleSheet.create({
   },
   pembahasan: {
     ...FONT_TEXT_PRIMARY,
-    fontSize: 14,
+    fontSize: scale(14),
     color: '#000',
     lineHeight: 18,
     justifyContent: 'center',

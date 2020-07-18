@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
   },
   title: {
     ...FONT_HEADLINE5_PRIMARY,
-    fontSize: 25,
+    fontSize: scale(25),
     color: COLOR_BLACK
   },
   view_content: {

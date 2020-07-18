@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   },
   title: {
     ...FONT_HEADLINE5_PRIMARY,
-    fontSize: 25,
+    fontSize: scale(25),
     color: COLOR_BLACK
   },
   deskripsiContainer: {
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
   },
   desc: {
     ...FONT_TEXT_PRIMARY,
-    fontSize: 14,
+    fontSize: scale(14),
     color: '#000',
     lineHeight: 18
   },
@@ -98,17 +98,17 @@ const styles = StyleSheet.create({
   },
   nama: {
     ...FONT_BOLD_PRIMARY,
-    fontSize: 15,
+    fontSize: scale(15),
     color: '#000'
   },
   tugas: {
     ...FONT_TEXT_PRIMARY,
-    fontSize: 13,
+    fontSize: scale(13),
     color: '#000'
   },
   email: {
     ...FONT_TEXT_PRIMARY,
-    fontSize: 13,
+    fontSize: scale(13),
     color: '#88898C'
   },
   footer: {
@@ -118,7 +118,7 @@ const styles = StyleSheet.create({
     ...FONT_TEXT_PRIMARY,
     textAlign: 'center',
     color: '#88898C',
-    fontSize: 12
+    fontSize: scale(12)
   },
   logoFooter: {
     alignItems: 'center'
